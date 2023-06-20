@@ -29,8 +29,8 @@
                   <table id="datatable" class="table table-striped table-bordered " style="width:100%">
                     <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>Position</th>
+                        <th>No</th>
+                        <th>ID Set Kelas</th>
                         <th>Office</th>
                         <th>Age</th>
                         <th>Start date</th>

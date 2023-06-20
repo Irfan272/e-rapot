@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Mulok extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['nama_mulok'];
 }

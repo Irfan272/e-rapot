@@ -1,5 +1,7 @@
 @extends('admin.layout.master')
 
+@section('title', 'View Siswa')
+
 @section('content')
      <!-- page content -->
      <div class="right_col" role="main">
@@ -18,82 +20,107 @@
                     <div class="x_panel">
                         
                         <div class="x_content">
-                            <form class="" action="" method="post" novalidate>
                                
                                 <span class="section">View Data Siswa</span>
-                                <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">NIP<span class="required">*</span></label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="name" required="required" />
-                                    </div>
-                                </div>
+                                
+                                @foreach ($siswa as $s)
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Nama Lengkap<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" class='optional' name="occupation" data-validate-length-range="5,15" type="text" /></div>
+                                        <input readonly value="{{ ucwords($s->NAMA) }}" class="form-control" class='optional' name="nama" data-validate-length-range="5,15" type="text" /></div>
                                 </div>
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">email<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">NIS<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" name="email" class='email' required="required" type="email" /></div>
+                                        <input readonly value="{{ $s->NIS }}" type="text" class="form-control" data-validate-length-range="6" data-validate-words="2" name="nis" required="required" />
+                                    </div>
+                                </div>
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">NISN<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input readonly value="{{ $s->NISN }}" type="text" class="form-control" data-validate-length-range="6" data-validate-words="2" name="nisn" required="required" />
+                                    </div>
+                                </div>
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Jenis Kelamin<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input readonly value="{{ ucfirst($s->jenis_kelamin) }}" type="text" class="form-control" data-validate-length-range="6" data-validate-words="2" name="kelamin" required="required" />
+                                    </div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Tempat Lahir<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" class='optional' name="occupation" data-validate-length-range="5,15" type="text" /></div>
+                                        <input readonly value="{{ ucwords($s->tempat_lahir) }}" class="form-control" class='optional' name="tempat_lahir" data-validate-length-range="5,15" type="email" /></div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Tanggal Lahir<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" class='date' type="date" name="date" required='required'></div>
+                                        <input readonly class="form-control" class='date' type="date" name="date" required='required'></div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Agama<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" class='optional' name="occupation" data-validate-length-range="5,15" type="text" /></div>
+                                        <input readonly value="{{ ucwords($s->AGAMA) }}" class="form-control" class='optional' name="agama" data-validate-length-range="5,15" type="text" /></div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Alamat<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <textarea required="required" name='message' style="width: 100%"></textarea></div>
+                                        <textarea disabled readonly required="required" name='alamat' style="width: 100%">{{ $s->ALAMAT }}</textarea></div>
                                 </div>
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Telephone<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Nama Ayah<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" type="tel" class='tel' name="phone" required='required' data-validate-length-range="8,20" /></div>
+                                        <input readonly value="{{ ucwords($s->nama_ayah) }}" class="form-control" class='optional' name="nama_ayah" data-validate-length-range="5,15" type="text" /></div>
                                 </div>
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Jenis Kelamin<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Nama Ibu<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select class="form-control"  required='required' data-validate-length-range="8,20">
-                                            <option disabled value="">Pilih Jenis Kelamin</option>
-                                            <option value="pria">Pria</option>
-                                            <option value="wanita">Wanita</option>
-                                        </select>
-                                    </div>
+                                        <input readonly value="{{ ucwords($s->nama_ibu) }}" class="form-control" class='optional' name="nama_ibu" data-validate-length-range="5,15" type="text" /></div>
                                 </div>
-                                   <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Pendidikan Terakhir<span class="required">*</span></label>
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Pekerjaan Ayah<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select class="form-control"  required='required' data-validate-length-range="8,20">
-                                            <option disabled value="">Pilih Pendidikan</option>
-                                            <option value="SMA">SMA</option>
-                                            <option value="SMK">SMK</option>
-                                            <option value="S1">S1</option>
-                                            <option value="S2">S2</option>
-                                        </select>
-                                    </div>
+                                        <input readonly value="{{ ucwords($s->pekerjaan_ayah) }}" class="form-control" class='optional' name="pekerjaan_ayah" data-validate-length-range="5,15" type="text" /></div>
+                                </div>
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Pekerjaan Ibu<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input readonly value="{{ ucwords($s->pekerjaan_ibu) }}" class="form-control" class='optional' name="pekerjaan_ibu" data-validate-length-range="5,15" type="text" /></div>
+                                </div>
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">No. Telepon Ayah<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input readonly value="{{ ucwords($s->no_ayah) }}" class="form-control" class='optional' name="no_ayah" data-validate-length-range="5,15" type="text" /></div>
+                                </div>
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">No. Telepon Ibu<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input readonly value="{{ ucwords($s->nama_ibu) }}" class="form-control" class='optional' name="no_ibu" data-validate-length-range="5,15" type="text" /></div>
+                                </div>
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Tinggi Badan<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input readonly value="{{ $s->tinggi_badan }}" class="form-control" class='optional' name="tinggi_badan" data-validate-length-range="5,15" type="text" /></div>
+                                </div>
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Berat Badan<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input readonly value="{{ $s->berat_badan }}" class="form-control" class='optional' name="berat_badan" data-validate-length-range="5,15" type="text" /></div>
+                                </div>
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Golongan Darah<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input readonly value="{{ $s->golongan_darah }}" class="form-control" class='optional' name="golongan_darah" data-validate-length-range="5,15" type="text" /></div>
                                 </div>
                           
                                 <div class="ln_solid">
                                     <div class="form-group">
                                         <div class="col-md-6 offset-md-3">
-                                            <button type='submit' class="btn btn-primary">Submit</button>
-                                            <a href="/admin/guru" class="btn btn-danger">Batal</a>
+                                            <a href="/admin/siswa" class="btn btn-primary">Kembali</a>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </div> 
+                             @endforeach
                         </div>
                     </div>
                 </div>

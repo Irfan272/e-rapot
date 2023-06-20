@@ -1,5 +1,7 @@
 @extends('admin.layout.master')
 
+@section('title', 'Data Siswa')
+
 @section('content')
     
         <!-- page content -->
@@ -14,6 +16,14 @@
                   Siswa</a>
               <div class="x_panel">
                 <div class="x_title">
+                  @if (session('status'))
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('status') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  @endif
                   <h2>Tabel Data <small>Siswa</small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -28,32 +38,42 @@
               
                   <table id="datatable" class="table table-striped table-bordered " style="width:100%">
                     <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                      <tr class="text-center">
+                        <th>NIS</th>
+                        <th>NISN</th>
+                        <th>Nama Lengkap</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Agama</th>
+                        <th>Tempat Lahir</th>
+                        <th>Tanggal Lahir</th>
+                        <th>Alamat</th>
                         <th style="width: 25%">Action</th>
                       </tr>
                     </thead>
 
 
                     <tbody>
-                        <tr >
-                        <td >Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                        <td style="text-align: left">
-                          <a href="/admin/siswa/view/{$id}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                          <a href="/admin/siswa/edit/{$id}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                          <a href="/admin/kelas/delete/{id}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                      @foreach ($siswa as $s)
+                        <tr>
+                        <td class="text-center">{{ $s->NIS }}</td>
+                        <td class="text-center">{{ $s->NISN }}</td>
+                        <td>{{ ucwords($s->NAMA) }}</td>
+                        <td>{{ ucwords($s->jenis_kelamin) }}</td>
+                        <td>{{ ucwords($s->AGAMA) }}</td>
+                        <td>{{ ucwords($s->tempat_lahir) }}</td>
+                        <td>{{ $s->tgl_lahir }}</td>
+                        <td>{{ $s->ALAMAT }}</td>
+                        <td>
+                          <a href="/admin/siswa/view/{{ $s->id }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                          <a href="/admin/siswa/edit/{{ $s->id }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                          <form action="/admin/siswa/delete/{{$s->id}}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                          <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </button>
+                        </form>
                         </td>
                       </tr>
+                      @endforeach
                       
                     </tbody>
                   </table>

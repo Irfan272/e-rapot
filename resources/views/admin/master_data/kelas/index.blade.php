@@ -1,5 +1,7 @@
 @extends('admin.layout.master')
 
+@section('title', 'Data Kelas')
+
 @section('content')
     
         <!-- page content -->
@@ -14,6 +16,16 @@
                   Kelas</a>
               <div class="x_panel">
                 <div class="x_title">
+
+                  @if (session('status'))
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('status') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  @endif
+
                   <h2>Tabel Data<small>Kelas</small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -37,16 +49,22 @@
 
 
                     <tbody>
+                      @foreach ($kelas as $k)
+                          
+                      
                         <tr >
-                        <td>1</td>
-                        <td>TKJ 1</td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $k->nama_kelas }}</td>
                         <td style="text-align: left">
-                          <a href="/admin/kelas/view/{$id}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                          <a href="/admin/kelas/edit/{$id}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                          <a href="/admin/kelas/delete/{$id}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                          <a href="/admin/kelas/edit/{{ $k->id }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                          <form action="/admin/kelas/delete/{{$k->id}}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                          <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </button>
+                        </form>
                         </td>
                       </tr>
-                      
+                      @endforeach
                     </tbody>
                   </table>
                 </div>

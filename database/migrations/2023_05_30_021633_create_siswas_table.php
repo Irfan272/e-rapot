@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('NAMA');
             $table->integer('NIS')->unique();
             $table->integer('NISN')->unique();
-            $table->enum('jenis_kelamin', ['pria', 'wanita']);
+            $table->string('jenis_kelamin');
             $table->string('tempat_lahir');
             $table->date('tgl_lahir');
             $table->string('AGAMA');

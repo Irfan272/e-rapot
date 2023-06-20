@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-    <title>Admin! | </title>
+    <title>@yield('title')</title>
 
     <!-- Bootstrap -->
     <link href="{{asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -25,6 +25,9 @@
     <link href="{{asset('assets/vendors/jqvmap/dist/jqvmap.min.css')}}" rel="stylesheet"/>
     <!-- bootstrap-daterangepicker -->
     <link href="{{asset('assets/vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
+
+    <!-- borrstrap-select -->
+    <link href="{{asset('assets/vendors/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="{{asset('assets/build/css/custom.min.css')}}" rel="stylesheet">
@@ -94,8 +97,18 @@
     <script src="{{asset('assets/vendors/moment/min/moment.min.js')}}"></script>
     <script src="{{asset('assets/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
 
+    <!-- bootstrap-select -->
+    <script src="{{asset('assets/vendors/bootstrap-select/js/bootstrap-select.js')}}"></script>
+
     <!-- Custom Theme Scripts -->
     <script src="{{asset('assets/build/js/custom.min.js')}}"></script>
+
+    <!-- Custom JS -->
+    <script>
+      $(document).ready(function() {
+        $('.selectpicker').selectpicker();
+      });
+    </script>
 	
   </body>
 </html>

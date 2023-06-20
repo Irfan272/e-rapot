@@ -1,5 +1,7 @@
 @extends('admin.layout.master')
 
+@section('title', 'Edit Data Kelas')
+
 @section('content')
      <!-- page content -->
      <div class="right_col" role="main">
@@ -18,13 +20,19 @@
                     <div class="x_panel">
                         
                         <div class="x_content">
-                            <form class="" action="" method="post" novalidate>
+
+                            @foreach ($kelas as $k)
+                                
+                            
+                            <form class="" action="/admin/kelas/update/{{ $k->id }}" method="post" novalidate>
+                                @csrf
+                                @method('PATCH')
                                
                                 <span class="section">Edit Data Kelas</span>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Nama Kelas<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="nama_kelas" required="required" />
+                                        <input value="{{ $k->nama_kelas }}" class="form-control" data-validate-length-range="6" data-validate-words="2" name="nama_kelas" required="required" />
                                     </div>
                                 </div>
                                
@@ -37,6 +45,7 @@
                                     </div>
                                 </div>
                             </form>
+                            @endforeach
                         </div>
                     </div>
                 </div>

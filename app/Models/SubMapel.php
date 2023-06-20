@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SubMapel extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['id_mapel', 'nama_submapel'];
 }

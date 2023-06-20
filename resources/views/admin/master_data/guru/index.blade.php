@@ -1,5 +1,7 @@
 @extends('admin.layout.master')
 
+@section('title', 'Data Guru')
+
 @section('content')
     
         <!-- page content -->
@@ -14,7 +16,15 @@
                   Guru</a>
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>Default Example <small>Users</small></h2>
+                  @if (session('status'))
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('status') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  @endif
+                  <h2>Tabel Data <small>Guru</small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -32,28 +42,38 @@
                         <th>No</th>
                         <th>NIP</th>
                         <th>Nama Lengkap</th>
-                        <th>Email</th>
+                        <th>Jenis Kelamin</th>
                         <th>Alamat</th>
                         <th>Telepon</th>
+                        <th>Email</th>
                         <th style="width: 30%">Action</th>
                       </tr>
                     </thead>
 
 
                     <tbody>
+                      @foreach ($guru as $g)
+                          
+                      
                         <tr >
-                        <td >1</td>
-                        <td>11101191052</td>
-                        <td>Gopan pro max</td>
-                        <td>gopan@gmail.com</td>
-                        <td>Serang, banten</td>
-                        <td>08123123123123</td>
+                        <td >{{ $loop->iteration }}</td>
+                        <td>{{ $g->NIP }}</td>
+                        <td>{{ ucwords($g->nama_lengkap) }}</td>
+                        <td>{{ ucwords($g->jenis_kelamin) }}</td>
+                        <td>{{ $g->alamat }}</td>
+                        <td>{{ $g->no_telpon }}</td>
+                        <td>{{ $g->email }}</td>
                         <td style="text-align: left">
-                          <a href="/admin/guru/view/{$id}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                          <a href="/admin/guru/edit" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                          <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                          <a href="/admin/guru/view/{{ $g->id }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                          <a href="/admin/guru/edit/{{ $g->id }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                          <form action="/admin/guru/delete/{{$g->id}}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                          <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </button>
+                        </form>
                         </td>
                       </tr>
+                      @endforeach
                       
                     </tbody>
                   </table>

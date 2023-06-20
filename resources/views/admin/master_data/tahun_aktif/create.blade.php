@@ -1,5 +1,7 @@
 @extends('admin.layout.master')
 
+@section('title', 'Input Data Tahun Aktif')
+
 @section('content')
      <!-- page content -->
      <div class="right_col" role="main">
@@ -18,8 +20,8 @@
                     <div class="x_panel">
                         
                         <div class="x_content">
-                            <form class="" action="" method="post" novalidate>
-                               
+                            <form class="" action="/admin/tahun_aktif/store" method="post" novalidate>
+                               @csrf
                                 <span class="section">Input Data Tahun Aktif</span>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Tahun Ajaran<span class="required">*</span></label>

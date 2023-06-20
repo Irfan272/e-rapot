@@ -2,37 +2,113 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\Mapel;
+use App\Models\Mulok;
+use App\Models\Sikap;
+use App\Models\SubMapel;
+use App\Models\SubMulok;
+use App\Models\Ekstrakulikuler;
+use App\Models\TahunAktif;
+use App\Models\Sekolah;
 use Illuminate\Http\Request;
 
 class AdminMasterController extends Controller
 {
     // Master Data Siswa
     public function indexSiswa(){
-        return view('admin.master_data.siswa.index');
+        $siswa = Siswa::all();
+
+        return view('admin.master_data.siswa.index', compact('siswa'));
     }
 
     public function createSiswa(){
         return view('admin.master_data.siswa.create');
     }
 
-    public function storeSiswa(){
+    public function storeSiswa(Request $request){
+        // $request->validate([
+        //     'nama' => 'required|string',
+        //     'nis' => 'required|numeric',
+        //     'nisn' => 'required|numeric',
+        //     'kelamin' => 'required',
+        //     'tempat_lahir' => 'required|string',
+        //     'tgl_lahir' => 'required',
+        //     'agama' => 'required|string',
+        //     'nama_ayah' => 'required|string',
+        //     'nama_ibu' => 'required|string',
+        //     'pekerjaan_ayah' => 'required|string',
+        //     'pekerjaan_ibu' => 'required|string',
+        //     'no_ayah' => 'required|numeric|digits_between:6,13',
+        //     'no_ibu' => 'required|numeric|digits_between:6,13',
+        //     'tinggi_badan' => 'required|numeric|max:3',
+        //     'berat_badan' => 'required|numeric|max:3',
+        //     'golongan_darah' => 'required',
+        // ]);
+        // Siswa::all();
+        Siswa::create([
+        'NAMA' => $request->nama,
+        'NIS' =>$request->nis,
+        'NISN'=> $request->nisn,
+        'jenis_kelamin'=> $request->kelamin,
+        'tempat_lahir' => $request->tempat_lahir,
+        'tgl_lahir'=> $request->tgl_lahir,
+        'AGAMA'=> $request->agama,
+        'ALAMAT'=> $request->alamat,
+        'nama_ayah'=> $request->nama_ayah,
+        'nama_ibu'=> $request->nama_ibu,
+        'pekerjaan_ayah'=> $request->pekerjaan_ayah,
+        'pekerjaan_ibu' => $request->pekerjaan_ibu,
+        'no_ayah'=> $request->no_ayah,
+        'no_ibu'=> $request->no_ibu,
+        'tinggi_badan'=> $request->tinggi_badan,
+        'berat_badan'=> $request->berat_badan,
+        'golongan_darah'=> $request->golongan_darah,
+        ]);
 
+        return redirect('/admin/siswa')->with('status', 'Data berhasil ditambah!');
     }
 
-    public function editSiswa(){
-        return view('admin.master_data.siswa.edit');
+    public function editSiswa($id){
+        $siswa =  Siswa::where('id', $id)->get();
+        return view('admin.master_data.siswa.edit',  compact('siswa'));
     }
 
-    public function updateSiswa(){
+    public function updateSiswa(Siswa $siswa, Request $request, $id){
+        Siswa::where('id', $id)
+        ->update([
+        'NAMA' => $request->nama,
+        'NIS' =>$request->nis,
+        'NISN'=> $request->nisn,
+        'jenis_kelamin'=> $request->kelamin,
+        'tempat_lahir' => $request->tempat_lahir,
+        'tgl_lahir'=> $request->tgl_lahir,
+        'AGAMA'=> $request->agama,
+        'ALAMAT'=> $request->alamat,
+        'nama_ayah'=> $request->nama_ayah,
+        'nama_ibu'=> $request->nama_ibu,
+        'pekerjaan_ayah'=> $request->pekerjaan_ayah,
+        'pekerjaan_ibu' => $request->pekerjaan_ibu,
+        'no_ayah'=> $request->no_ayah,
+        'no_ibu'=> $request->no_ibu,
+        'tinggi_badan'=> $request->tinggi_badan,
+        'berat_badan'=> $request->berat_badan,
+        'golongan_darah'=> $request->golongan_darah,
+        ]);
 
+        return redirect('/admin/siswa')->with('status', 'Data berhasil diubah!');
     }
 
-    public function destroySiswa(){
-
+    public function destroySiswa($id){
+        Siswa::destroy($id);
+        return redirect('/admin/siswa')->with('status', 'Data berhasil dihapus!');
     }
 
-    public function viewSiswa(){
-        return view('admin.master_data.siswa.view');
+    public function viewSiswa($id){
+        $siswa =  Siswa::where('id', $id)->get();
+        return view('admin.master_data.siswa.view', compact('siswa'));
     }
 
 
@@ -40,31 +116,63 @@ class AdminMasterController extends Controller
 
     // Master Data Guru
     public function indexGuru(){
-        return view('admin.master_data.guru.index');
+        $guru = Guru::all();
+        return view('admin.master_data.guru.index', compact('guru'));
     }
 
     public function createGuru(){
         return view('admin.master_data.guru.create');
     }
 
-    public function storeGuru(){
+    public function storeGuru(Request $request){
+        Guru::create([
+            'NIP' => $request->nip,
+            'nama_lengkap' => $request->nama,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tgl_lahir,
+            'agama' => $request->agama,
+            'alamat' => $request->alamat,
+            'no_telpon' => $request->telpon,
+            'jenis_kelamin' => $request->kelamin,
+            'email' => $request->email,
+            'pendidikan_terakhir' => $request->pendidikan,
+            ]);
+    
+            return redirect('/admin/guru')->with('status', 'Data berhasil ditambah!');
+    }
+
+    public function editGuru($id){
+        $guru =  Guru::where('id', $id)->get();
+        return view('admin.master_data.guru.edit', compact('guru'));
 
     }
 
-    public function editGuru(){
+    public function updateGuru(Request $request, $id){
+        Guru::where('id', $id)->
+        update([
+            'NIP' => $request->nip,
+            'nama_lengkap' => $request->nama,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tgl_lahir,
+            'agama' => $request->agama,
+            'alamat' => $request->alamat,
+            'no_telpon' => $request->telpon,
+            'jenis_kelamin' => $request->kelamin,
+            'email' => $request->email,
+            'pendidikan_terakhir' => $request->pendidikan,
+        ]);
 
+        return redirect('/admin/guru')->with('status', 'Data berhasil diubah!');
     }
 
-    public function updateGuru(){
-
+    public function destroyGuru($id){
+        Guru::destroy($id);
+        return redirect('/admin/guru')->with('status', 'Data berhasil dihapus!');
     }
 
-    public function destroyGuru(){
-
-    }
-
-    public function viewGuru(){
-        return view('admin.master_data.guru.view');
+    public function viewGuru($id){
+        $guru =  Guru::where('id', $id)->get();
+        return view('admin.master_data.guru.view', compact('guru'));
     }
 
     // Ending Master Data Guru
@@ -72,7 +180,8 @@ class AdminMasterController extends Controller
     // Master Data Kelas
 
     public function indexKelas(){
-        return view('admin.master_data.kelas.index');
+        $kelas = Kelas::all();
+        return view('admin.master_data.kelas.index', compact('kelas'));
     }
 
   
@@ -80,32 +189,44 @@ class AdminMasterController extends Controller
         return view('admin.master_data.kelas.create');
     }
 
-    public function storeKelas(){
+    public function storeKelas(Request $request){
+        Kelas::create([
+            'nama_kelas' => $request->nama_kelas,
+        ]);
 
+        return redirect('/admin/kelas')->with('status', 'Data berhasil ditambah!');
     }
 
-    public function editKelas(){
-        return view('admin.master_data.kelas.edit');
+    public function editKelas($id){
+        $kelas = Kelas::where('id', $id)->get();
+        return view('admin.master_data.kelas.edit', compact('kelas'));
     }
 
-    public function updateKelas(){
+    public function updateKelas(Request $request, $id){
+        Kelas::where('id', $id)->
+        update([
+            'nama_kelas' => $request->nama_kelas,
+        ]);
 
+        return redirect('/admin/kelas')->with('status', 'Data berhasil diubah!');
     }
 
-    public function destroyKelas(){
-
+    public function destroyKelas($id){
+        Kelas::destroy($id);
+        return redirect('/admin/kelas')->with('status', 'Data berhasil dihapus!');
     }
 
-    public function viewKelas(){
-        return view('admin.master_data.kelas.view');
-    }
+    // public function viewKelas(){
+    //     return view('admin.master_data.kelas.view');
+    // }
 
     // Ending Master Data Kelas
 
     // Master Data Mata Pelajaran
 
     public function indexMP(){
-        return view('admin.master_data.mata_pelajaran.index');
+        $mapel = Mapel::all();
+        return view('admin.master_data.mata_pelajaran.index', compact('mapel'));
     }
 
   
@@ -113,65 +234,312 @@ class AdminMasterController extends Controller
         return view('admin.master_data.mata_pelajaran.create');
     }
 
-    public function storeMP(){
+    public function storeMP(Request $request){
+        Mapel::create([
+            'nama_mapel' => $request->nama_mapel,
+        ]);
+
+        return redirect('/admin/mata_pelajaran')->with('status', 'Data berhasil ditambah!');
 
     }
 
-    public function editMP(){
-        return view('admin.master_data.mata_pelajaran.edit');
+    public function editMP($id){
+        $mapel = Mapel::where('id', $id)->get();
+        return view('admin.master_data.mata_pelajaran.edit', compact('mapel'));
     }
 
-    public function updateMP(){
+    public function updateMP(Request $request, $id){
+        Mapel::where('id', $id)->
+        update([
+            'nama_mapel' => $request->nama_mapel,
+        ]);
 
+        return redirect('/admin/mata_pelajaran')->with('status', 'Data berhasil diubah!');
     }
 
-    public function destroyMP(){
-
+    public function destroyMP($id){
+        Mapel::destroy($id);
+        return redirect('/admin/mata_pelajaran')->with('status', 'Data berhasil dihapus!');
     }
 
-    public function viewMP(){
-        return view('admin.master_data.mata_pelajaran.view');
-    }
+    // public function viewMP(){
+    //     return view('admin.master_data.mata_pelajaran.view');
+    // }
 
     // Ending Master Data Mata Pelajaran
 
     // Master Data Kompetensi Dasar 
 
-    public function indexKD(){
-        return view('admin.master_data.kompetensi_dasar.index');
+    public function indexML(){
+        $mulok = Mulok::all();
+        return view('admin.master_data.muatan_lokal.index', compact('mulok'));
     }
 
   
-    public function createKD(){
-        return view('admin.master_data.kompetensi_dasar.create');
+    public function createML(){
+        return view('admin.master_data.muatan_lokal.create');
     }
 
-    public function storeKD(){
+    public function storeML(Request $request){
+        Mulok::create([
+            'nama_mulok' => $request->nama_mulok,
+        ]);
 
+        return redirect('/admin/muatan_lokal')->with('status', 'Data berhasil ditambah!');
     }
 
-    public function editKD(){
-        return view('admin.master_data.kompetensi_dasar.edit');
+    public function editML($id){
+        $mulok = Mulok::where('id', $id)->get();
+        return view('admin.master_data.muatan_lokal.edit', compact('mulok'));
     }
 
-    public function updateKD(){
+    public function updateML(Request $request, $id){
+        Mulok::where('id', $id)->
+        update([
+            'nama_mulok' => $request->nama_mulok,
+        ]);
 
+        return redirect('/admin/muatan_lokal')->with('status', 'Data berhasil diubah!');
     }
 
-    public function destroyKD(){
-
+    public function destroyML($id){
+        Mulok::destroy($id);
+        return redirect('/admin/muatan_lokal')->with('status', 'Data berhasil dihapus!');
     }
 
-    public function viewKD(){
-        return view('admin.master_data.kompetensi_dasar.view');
-    }
+    // public function viewML(){
+    //     return view('admin.master_data.muatan_lokal.view');
+    // }
 
     // Ending Master Data Kompetensi Dasar
+
+    // Master Sikap
+
+    public function indexSikap(){
+        $sikap = Sikap::all();
+        return view('admin.master_data.sikap.index', compact('sikap'));
+    }
+
+  
+    public function createSikap(){
+        return view('admin.master_data.sikap.create');
+    }
+
+    public function storeSikap(Request $request){
+        Sikap::create([
+            'nama_sikap' => $request->nama_sikap,
+        ]);
+
+        return redirect('/admin/sikap')->with('status', 'Data berhasil ditambah!');
+    }
+
+    public function editSikap($id){
+        $sikap = Sikap::where('id', $id)->get();
+        return view('admin.master_data.sikap.edit', compact('sikap'));
+    }
+
+    public function updateSikap(Request $request, $id){
+        Sikap::where('id', $id)->
+        update([
+            'nama_sikap' => $request->nama_sikap,
+        ]);
+
+        return redirect('/admin/sikap')->with('status', 'Data berhasil diubah!');
+    }
+
+    public function destroySikap($id){
+        Sikap::destroy($id);
+        return redirect('/admin/sikap')->with('status', 'Data berhasil dihapus!');
+    }
+
+    // public function viewSikap(){
+    //     return view('admin.master_data.sikap.view');
+    // }
+
+    // Ending Master Sikap
+
+    // Master Sub Mapel
+
+    public function indexSMP(){
+        $subMapel = SubMapel::all();
+        return view('admin.master_data.sub_mata_pelajaran.index', compact('subMapel'));
+    }
+
+  
+    public function createSMP(){
+        $mapel = Mapel::all();
+        return view('admin.master_data.sub_mata_pelajaran.create', compact('mapel'));
+    }
+
+    public function storeSMP(Request $request){
+        SubMapel::create([
+            'id_mapel' => $request->id_mapel,
+            'nama_submapel' => $request->nama_submapel,
+        ]);
+
+        return redirect('/admin/sub_mata_pelajaran')->with('status', 'Data berhasil ditambah!');
+
+    }
+
+    public function editSMP($id){
+        $mapel = Mapel::all();
+        $subMapel = SubMapel::where('id', $id)->get();
+        return view('admin.master_data.sub_mata_pelajaran.edit', compact('subMapel', 'mapel'));
+    }
+
+    public function updateSMP(Request $request, $id){
+        SubMapel::where('id', $id)->
+        update([
+            'id_mapel' => $request->id_mapel,
+            'nama_submapel' => $request->nama_submapel,
+        ]);
+
+        return redirect('/admin/sub_mata_pelajaran')->with('status', 'Data berhasil diubah!');
+    }
+
+    public function destroySMP($id){
+        SubMapel::destroy($id);
+        return redirect('/admin/sub_mata_pelajaran')->with('status', 'Data berhasil dihapus!');
+    }
+
+    // public function viewSMP(){
+    //     return view('admin.master_data.sub_mata_pelajaran.view');
+    // }
+
+    // Ending Master Sub Mapel
+
+    // Master Sub Muatan Lokal
+
+    public function indexSML(){
+        $subMulok = SubMulok::all();
+        return view('admin.master_data.sub_muatan_lokal.index', compact('subMulok'));
+    }
+
+  
+    public function createSML(){
+        $mulok = Mulok::all();
+        return view('admin.master_data.sub_muatan_lokal.create', compact('mulok'));
+    }
+
+    public function storeSML(Request $request){
+        SubMulok::create([
+            'id_mulok' => $request->id_mulok,
+            'nama_submulok' => $request->nama_submulok,
+        ]);
+
+        return redirect('/admin/sub_muatan_lokal')->with('status', 'Data berhasil ditambah!');
+    }
+
+    public function editSML($id){
+        $mulok = Mulok::all();
+        $subMulok = SubMulok::where('id', $id)->get();
+        return view('admin.master_data.sub_muatan_lokal.edit', compact('subMulok', 'mulok'));
+    }
+
+    public function updateSML(Request $request, $id){
+        SubMulok::where('id', $id)->
+        update([
+            'id_mulok' => $request->id_mulok,
+            'nama_submulok' => $request->nama_submulok,
+        ]);
+
+        return redirect('/admin/sub_muatan_lokal')->with('status', 'Data berhasil diubah!');
+    }
+
+    public function destroySML($id){
+        SubMulok::destroy($id);
+        return redirect('/admin/sub_muatan_lokal')->with('status', 'Data berhasil dihapus!');
+    }
+
+    public function viewSML(){
+        return view('admin.master_data.sub_muatan_lokal.view');
+    }
+
+    // Ending Sub Muatan Lokal
+
+    // Master Ekstrakulikuler
+
+    public function indexEkskul(){
+        $ekskul = Ekstrakulikuler::all();
+        return view('admin.master_data.ekstrakulikuler.index', compact('ekskul'));
+    }
+
+  
+    public function createEkskul(){
+        return view('admin.master_data.ekstrakulikuler.create');
+    }
+
+    public function storeEkskul(Request $request){
+        Ekstrakulikuler::create([
+            'nama_ekstrakulikuler' => $request->nama_ekskul,
+        ]);
+
+        return redirect('/admin/ekstrakulikuler')->with('status', 'Data berhasil ditambah!');
+    }
+
+    public function editEkskul($id){
+        $ekskul = Ekstrakulikuler::where('id', $id)->get();
+        return view('admin.master_data.ekstrakulikuler.edit', compact('ekskul'));
+    }
+
+    public function updateEkskul(Request $request, $id){
+        Ekstrakulikuler::where('id', $id)->
+        update([
+            'nama_ekstrakulikuler' => $request->nama_ekskul,
+        ]);
+
+        return redirect('/admin/ekstrakulikuler')->with('status', 'Data berhasil diubah!');
+    }
+
+    public function destroyEkskul($id){
+        Ekstrakulikuler::destroy($id);
+        return redirect('/admin/ekstrakulikuler')->with('status', 'Data berhasil dihapus!');
+    }
+
+    public function viewEkskul(){
+        return view('admin.master_data.ekstrakulikuler.view');
+    }
+
+    // Ending Master Ekstrakulikuler
+
+    // Master Sub Mapel
+
+    // public function indexSM(){
+    //     return view('admin.master_data.sub_mapel.index');
+    // }
+
+  
+    // public function createSM(){
+    //     return view('admin.master_data.sub_mapel.create');
+    // }
+
+    // public function storeSM(){
+
+    // }
+
+    // public function editSM(){
+    //     return view('admin.master_data.sub_mapel.edit');
+    // }
+
+    // public function updateSM(){
+
+    // }
+
+    // public function destroySM(){
+
+    // }
+
+    // public function viewSM(){
+    //     return view('admin.master_data.sub_mapel.view');
+    // }
+
+    // Ending Master Sub Mapel
 
     // Master Data Tahun Aktif
 
     public function indexTA(){
-        return view('admin.master_data.tahun_aktif.index');
+        $aktif = TahunAktif::all();
+        return view('admin.master_data.tahun_aktif.index', compact('aktif'));
     }
 
   
@@ -179,20 +547,33 @@ class AdminMasterController extends Controller
         return view('admin.master_data.tahun_aktif.create');
     }
 
-    public function storeTA(){
+    public function storeTA(Request $request){
+        TahunAktif::create([
+            'tahun_ajaran' => $request->tahun_ajaran,
+            'status' => $request->status,
+        ]);
 
+        return redirect('/admin/tahun_aktif')->with('status', 'Data berhasil ditambah!');        
     }
 
-    public function editTA(){
-        return view('admin.master_data.tahun_aktif.edit');
+    public function editTA($id){
+        $aktif = TahunAktif::where('id', $id)->get();
+        return view('admin.master_data.tahun_aktif.edit', compact('aktif'));
     }
 
-    public function updateTA(){
+    public function updateTA(Request $request, $id){
+        TahunAktif::where('id', $id)->
+        update([
+            'tahun_ajaran' => $request->tahun_ajaran,
+            'status' => $request->status,
+        ]);
 
+        return redirect('/admin/tahun_aktif')->with('status', 'Data berhasil diubah!');
     }
 
-    public function destroyTA(){
-
+    public function destroyTA($id){
+        TahunAktif::destroy($id);
+        return redirect('/admin/tahun_aktif')->with('status', 'Data berhasil dihapus!');
     }
 
     public function viewTA(){
@@ -201,4 +582,53 @@ class AdminMasterController extends Controller
 
     // Ending Master Data Tahun Aktif
 
+    // Master Sub Mapel
+
+    public function indexSekolah(){
+        $sekolah = Sekolah::all();
+        return view('admin.master_data.sekolah.index', compact('sekolah'));
+    }
+
+  
+    public function createSekolah(){
+        return view('admin.master_data.sekolah.create');
+    }
+
+    public function storeSekolah(Request $request){
+        Sekolah::create([
+            'nama_sekolah' => $request->nama_sekolah,
+            'npsn' => $request->npsn,
+            'alamat' => $request->alamat,
+        ]);
+
+        return redirect('/admin/sekolah')->with('status', 'Data berhasil ditambah!');
+    }
+
+    public function editSekolah($id){
+        $sekolah = Sekolah::where('id', $id)->get();
+        return view('admin.master_data.sekolah.edit', compact('sekolah'));
+    }
+
+    public function updateSekolah(Request $request, $id){
+        Sekolah::where('id',$id)->
+        update([
+            'nama_sekolah' => $request->nama_sekolah,
+            'npsn' => $request->npsn,
+            'alamat' => $request->alamat
+        ]);
+
+        return redirect('/admin/sekolah')->with('status', 'Data berhasil diubah!');
+    }
+
+    public function destroySekolah($id){
+        Sekolah::destroy($id);
+        return redirect('/admin/sekolah')->with('status', 'Data berhasil dihapus!');
+    }
+
+    public function viewSekolah($id){
+        $sekolah = Sekolah::where('id', $id)->get();
+        return view('admin.master_data.sekolah.view', compact('sekolah'));
+    }
+
+    // Ending Master Sub Mapel
 }

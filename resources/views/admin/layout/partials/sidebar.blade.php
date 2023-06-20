@@ -23,14 +23,14 @@
                 <li><a href="/admin/guru">Data Guru</a></li>
                 <li><a href="/admin/kelas">Data Kelas</a></li>
                 <li><a href="/admin/mata_pelajaran">Data Mata Pelajaran</a></li>
-                <li><a href="#">Data Muatan Lokal</a></li>
-                <li><a href="#">Data Sikap</a></li>
-                <li><a href="#">Data Sub Mapel</a></li>
-                <li><a href="#">Data Sub Muatan Lokal</a></li>
-                <li><a href="#">Data Ekstrakulikuler</a></li>
+                <li><a href="/admin/muatan_lokal">Data Muatan Lokal</a></li>
+                <li><a href="/admin/sikap">Data Sikap</a></li>
+                <li><a href="/admin/sub_mata_pelajaran">Data Sub Mapel</a></li>
+                <li><a href="/admin/sub_muatan_lokal">Data Sub Muatan Lokal</a></li>
+                <li><a href="/admin/ekstrakulikuler">Data Ekstrakulikuler</a></li>
                 <li><a href="/admin/tahun_aktif">Data Tahun Aktif</a></li>
                 <li><a href="#">Data Akun</a></li>
-                <li><a href="#">Data Sekolah</a></li>
+                <li><a href="/admin/sekolah">Data Sekolah</a></li>
               </ul>
             </li>
             <li><a><i class="fa fa-edit"></i> Transaksi <span class="fa fa-chevron-down"></span></a>

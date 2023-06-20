@@ -1,5 +1,7 @@
 @extends('admin.layout.master')
 
+@section('title', 'Edit Data Mata Pelajaran')
+
 @section('content')
      <!-- page content -->
      <div class="right_col" role="main">
@@ -18,13 +20,16 @@
                     <div class="x_panel">
                         
                         <div class="x_content">
-                            <form class="" action="" method="post" novalidate>
-                               
+                            @foreach ($mapel as $m)
+                                
+                            <form class="" action="/admin/mata_pelajaran/update/{{ $m->id }}" method="post" novalidate>
+                               @csrf
+                               @method('PATCH')
                                 <span class="section">Edit Data Mata Pelajaran</span>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Nama Mata Pelajaran<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="name" required="required" />
+                                        <input value="{{ $m->nama_mapel }}" class="form-control" data-validate-length-range="6" data-validate-words="2" name="nama_mapel" required="required" />
                                     </div>
                                 </div>
                                
@@ -38,6 +43,8 @@
                                     </div>
                                 </div>
                             </form>
+                            
+                            @endforeach
                         </div>
                     </div>
                 </div>

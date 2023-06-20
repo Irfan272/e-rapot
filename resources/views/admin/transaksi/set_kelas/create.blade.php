@@ -1,5 +1,7 @@
 @extends('admin.layout.master')
 
+@section('title', 'Input Set Kelas')
+
 @section('content')
      <!-- page content -->
      <div class="right_col" role="main">
@@ -18,25 +20,40 @@
                     <div class="x_panel">
                         
                         <div class="x_content">
-                            <form class="" action="" method="post" novalidate>
-                               
+                            <form class="" action="/admin/set_kelas/store" method="post" novalidate>
+                               @csrf
                                 <span class="section">Input Data Set Kelas</span>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Nama Siswa<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="nama_siswa" required="required" />
+                                        <select name="siswa" class="form-control selectpicker" data-live-search="true"  required='required' data-validate-length-range="8,20">
+                                            <option readonly value="">Pilih Siswa (Nama, NISN)</option>
+                                            @foreach ($siswa as $s)
+                                            <option value="{{ $s->id }}">{{ $s->NAMA }}, {{ $s->NISN }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Nama Kelas<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Kelas<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="status" required="required" />
+                                        <select name="kelas" class="form-control selectpicker" data-live-search="true"  required='required' data-validate-length-range="8,20">
+                                            <option readonly value="">Pilih Kelas</option>
+                                            @foreach ($kelas as $k)
+                                            <option value="{{ $k->id }}">{{ $k->nama_kelas }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Tahun Ajaran<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="tahun_ajaran" required="required" />
+                                        <select name="tahun" class="form-control selectpicker" data-live-search="true"  required='required' data-validate-length-range="8,20">
+                                            <option readonly value="">Pilih Tahun Ajaran</option>
+                                            @foreach ($tahun as $t)
+                                            <option value="{{ $t->id }}">{{ $t->tahun_ajaran }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                

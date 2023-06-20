@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SetKelas extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['id_siswa', 'id_kelas', 'id_ta'];
 }

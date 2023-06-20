@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('agama');
             $table->string('alamat');
             $table->string('no_telpon');
-            $table->enum('jenis_kelamin', ['Laki-Laki', 'Perepuan']);
+            $table->string('jenis_kelamin');
             $table->string('email')->unique();
             $table->string('pendidikan_terakhir');
             $table->timestamps();

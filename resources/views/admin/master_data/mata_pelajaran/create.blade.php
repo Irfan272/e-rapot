@@ -1,5 +1,7 @@
 @extends('admin.layout.master')
 
+@section('title', 'Input Data Mata Pelajaran')
+
 @section('content')
      <!-- page content -->
      <div class="right_col" role="main">
@@ -18,13 +20,13 @@
                     <div class="x_panel">
                         
                         <div class="x_content">
-                            <form class="" action="" method="post" novalidate>
-                               
+                            <form class="" action="/admin/mata_pelajaran/store" method="post" novalidate>
+                               @csrf
                                 <span class="section">Input Data Mata Pelajaran</span>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Nama Mata Pelajaran<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="name" required="required" />
+                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="nama_mapel" required="required" />
                                     </div>
                                 </div>
                                

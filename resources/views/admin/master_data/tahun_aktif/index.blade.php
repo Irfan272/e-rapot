@@ -1,5 +1,7 @@
 @extends('admin.layout.master')
 
+@section('title', 'Data Tahun Aktif')
+
 @section('content')
     
         <!-- page content -->
@@ -14,6 +16,16 @@
                   Tahun Aktif</a>
               <div class="x_panel">
                 <div class="x_title">
+
+                  @if (session('status'))
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('status') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  @endif
+                  
                   <h2>Tabel Data <small>Tahun Aktif</small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -39,16 +51,23 @@
 
 
                     <tbody>
-                        <tr >
-                        <td >1</td>
-                        <td>2022/2023</td>
-                        <td>Aktif</td>
+                      @foreach ($aktif as $a)
+                      <tr >
+                        <td >{{ $loop->iteration }}</td>
+                        <td>{{ $a->tahun_ajaran }}</td>
+                        <td>{{ $a->status }}</td>
                         <td style="text-align: left">
-                          <a href="/admin/tahun_aktif/view/{$id}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                          <a href="/admin/tahun_aktif/edit/{$id}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                          <a href="/admin/tahun_aktif/delete/{id}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                          {{-- <a href="/admin/tahun_aktif/view/{$id}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a> --}}
+                          <a href="/admin/tahun_aktif/edit/{{ $a->id }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                          <form action="/admin/tahun_aktif/delete/{{$a->id}}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                          <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </button>
+                        </form>
                         </td>
                       </tr>
+                      @endforeach
+                        
                       
                     </tbody>
                   </table>
