@@ -26,13 +26,23 @@
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Tahun Ajaran<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="tahun_ajaran" required="required" />
+                                        <input value="{{ old('tahun_ajaran') }}" class="@error('tahun_ajaran') parsley-error @enderror form-control" data-validate-length-range="6" data-validate-words="2" name="tahun_ajaran" required="required" />
+                                        @error('tahun_ajaran')
+                                        <ul class="parsley-errors-list filled">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>   
+                                        @enderror 
                                     </div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Status<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="status" required="required" />
+                                        <input value="{{ old('status') }}" class="@error('status') parsley-error @enderror form-control" data-validate-length-range="6" data-validate-words="2" name="status" required="required" />
+                                        @error('status')
+                                        <ul class="parsley-errors-list filled">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>   
+                                        @enderror 
                                     </div>
                                 </div>
                                

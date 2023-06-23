@@ -26,23 +26,46 @@
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">NIP<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="nip" required="required" />
+                                        <input value="{{ old('nip') }}" class="@error('nip') parsley-error @enderror form-control" data-validate-length-range="6" data-validate-words="2" name="nip" required="required" />
+                                        @error('nip')
+                                        <ul class="parsley-errors-list filled">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>   
+                                        @enderror  
                                     </div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Nama Lengkap<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input name="nama" class="form-control" class='optional' data-validate-length-range="5,15" type="text" /></div>
+                                        <input value="{{ old('nama') }}" name="nama" class="@error('nama') parsley-error @enderror form-control" class='optional' data-validate-length-range="5,15" type="text" />
+                                        @error('nama')
+                                        <ul class="parsley-errors-list filled">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>   
+                                        @enderror  
+                                    </div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" name="email" class='email' required="required" type="email" /></div>
+                                        <input value="{{ old('email') }}" class="@error('email') parsley-error @enderror form-control" name="email" class='email' required="required" type="email" />
+                                        @error('email')
+                                        <ul class="parsley-errors-list filled">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>   
+                                        @enderror  
+                                    </div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Tempat Lahir<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" class='optional' name="tempat_lahir" data-validate-length-range="5,15" type="text" /></div>
+                                        <input value="{{ old('tempat_lahir') }}" class="@error('tempat_lahir') parsley-error @enderror form-control" class='optional' name="tempat_lahir" data-validate-length-range="5,15" type="text" />
+                                        @error('tempat_lahir')
+                                        <ul class="parsley-errors-list filled">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>   
+                                        @enderror  
+                                    </div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Tanggal Lahir<span class="required">*</span></label>
@@ -52,17 +75,35 @@
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Agama<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" class='optional' name="agama" data-validate-length-range="5,15" type="text" /></div>
+                                        <input value="{{ old('agama') }}" class="@error('agama') parsley-error @enderror form-control" class='optional' name="agama" data-validate-length-range="5,15" type="text" />
+                                        @error('agama')
+                                        <ul class="parsley-errors-list filled">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>   
+                                        @enderror  
+                                    </div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Alamat<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <textarea required="required" name='alamat' style="width: 100%"></textarea></div>
+                                        <textarea class="@error('alamat') parsley-error @enderror" required="required" name='alamat' style="width: 100%">{{ old('alamat') }}</textarea>
+                                        @error('alamat')
+                                        <ul class="parsley-errors-list filled">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>   
+                                        @enderror  
+                                    </div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">No. Telepon<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" type="tel" class='tel' name="telpon" required='required' data-validate-length-range="8,20" /></div>
+                                        <input value="{{ old('telpon') }}" class="@error('telpon') parsley-error @enderror form-control" type="tel" class='tel' name="telpon" required='required' data-validate-length-range="8,20" />
+                                        @error('telpon')
+                                        <ul class="parsley-errors-list filled">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>   
+                                        @enderror  
+                                    </div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Jenis Kelamin<span class="required">*</span></label>

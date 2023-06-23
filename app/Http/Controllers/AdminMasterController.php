@@ -29,25 +29,25 @@ class AdminMasterController extends Controller
     }
 
     public function storeSiswa(Request $request){
-        // $request->validate([
-        //     'nama' => 'required|string',
-        //     'nis' => 'required|numeric',
-        //     'nisn' => 'required|numeric',
-        //     'kelamin' => 'required',
-        //     'tempat_lahir' => 'required|string',
-        //     'tgl_lahir' => 'required',
-        //     'agama' => 'required|string',
-        //     'nama_ayah' => 'required|string',
-        //     'nama_ibu' => 'required|string',
-        //     'pekerjaan_ayah' => 'required|string',
-        //     'pekerjaan_ibu' => 'required|string',
-        //     'no_ayah' => 'required|numeric|digits_between:6,13',
-        //     'no_ibu' => 'required|numeric|digits_between:6,13',
-        //     'tinggi_badan' => 'required|numeric|max:3',
-        //     'berat_badan' => 'required|numeric|max:3',
-        //     'golongan_darah' => 'required',
-        // ]);
-        // Siswa::all();
+        $request->validate([
+            'nama' => 'required|string',
+            'nis' => 'required|numeric',
+            'nisn' => 'required|numeric',
+            'kelamin' => 'required',
+            'tempat_lahir' => 'required|string',
+            'tgl_lahir' => 'required',
+            'agama' => 'required|string',
+            'alamat' => 'required',
+            'nama_ayah' => 'required|string',
+            'nama_ibu' => 'required|string',
+            'pekerjaan_ayah' => 'required|string',
+            'pekerjaan_ibu' => 'required|string',
+            'no_ayah' => 'required|numeric|between:6,13',
+            'no_ibu' => 'required|numeric|between:6,13',
+            'tinggi_badan' => 'required|numeric|max_digits:3',
+            'berat_badan' => 'required|numeric|max_digits:3',
+            'golongan_darah' => 'required',
+        ]); 
         Siswa::create([
         'NAMA' => $request->nama,
         'NIS' =>$request->nis,
@@ -77,6 +77,26 @@ class AdminMasterController extends Controller
     }
 
     public function updateSiswa(Siswa $siswa, Request $request, $id){
+        $request->validate([
+            'nama' => 'required|string',
+            'nis' => 'required|numeric',
+            'nisn' => 'required|numeric',
+            'kelamin' => 'required',
+            'tempat_lahir' => 'required|string',
+            'tgl_lahir' => 'required',
+            'agama' => 'required|string',
+            'alamat' => 'required',
+            'nama_ayah' => 'required|string',
+            'nama_ibu' => 'required|string',
+            'pekerjaan_ayah' => 'required|string',
+            'pekerjaan_ibu' => 'required|string',
+            'no_ayah' => 'required|numeric|between:6,13',
+            'no_ibu' => 'required|numeric|between:6,13',
+            'tinggi_badan' => 'required|numeric|max_digits:3',
+            'berat_badan' => 'required|numeric|max_digits:3',
+            'golongan_darah' => 'required',
+        ]);
+
         Siswa::where('id', $id)
         ->update([
         'NAMA' => $request->nama,
@@ -125,6 +145,19 @@ class AdminMasterController extends Controller
     }
 
     public function storeGuru(Request $request){
+        $request->validate([
+            'nip' => 'required|numeric',
+            'nama' => 'required|string',
+            'email' => 'required|email',
+            'tempat_lahir' => 'required|string',
+            'tgl_lahir' => 'required',
+            'agama' => 'required|string',
+            'alamat' => 'required',
+            'telpon' => 'required|numeric|between:6,13',
+            'kelamin' => 'required',
+            'pendidikan' => 'required',
+        ]);
+        
         Guru::create([
             'NIP' => $request->nip,
             'nama_lengkap' => $request->nama,
@@ -148,6 +181,19 @@ class AdminMasterController extends Controller
     }
 
     public function updateGuru(Request $request, $id){
+        $request->validate([
+            'nip' => 'required|numeric',
+            'nama' => 'required|string',
+            'email' => 'required|email',
+            'tempat_lahir' => 'required|string',
+            'tgl_lahir' => 'required',
+            'agama' => 'required|string',
+            'alamat' => 'required',
+            'telpon' => 'required|numeric|between:6,13',
+            'kelamin' => 'required',
+            'pendidikan' => 'required',
+        ]);
+
         Guru::where('id', $id)->
         update([
             'NIP' => $request->nip,
@@ -190,6 +236,9 @@ class AdminMasterController extends Controller
     }
 
     public function storeKelas(Request $request){
+        $request->validate([
+            'nama_kelas' => 'required',
+        ]);
         Kelas::create([
             'nama_kelas' => $request->nama_kelas,
         ]);
@@ -203,6 +252,9 @@ class AdminMasterController extends Controller
     }
 
     public function updateKelas(Request $request, $id){
+        $request->validate([
+            'nama_kelas' => 'required',
+        ]);
         Kelas::where('id', $id)->
         update([
             'nama_kelas' => $request->nama_kelas,
@@ -235,6 +287,9 @@ class AdminMasterController extends Controller
     }
 
     public function storeMP(Request $request){
+        $request->validate([
+            'nama_mapel' => 'required',
+        ]);
         Mapel::create([
             'nama_mapel' => $request->nama_mapel,
         ]);
@@ -249,6 +304,9 @@ class AdminMasterController extends Controller
     }
 
     public function updateMP(Request $request, $id){
+        $request->validate([
+            'nama_mapel' => 'required',
+        ]);
         Mapel::where('id', $id)->
         update([
             'nama_mapel' => $request->nama_mapel,
@@ -281,6 +339,9 @@ class AdminMasterController extends Controller
     }
 
     public function storeML(Request $request){
+        $request->validate([
+            'nama_mulok' => 'required',
+        ]);
         Mulok::create([
             'nama_mulok' => $request->nama_mulok,
         ]);
@@ -294,6 +355,9 @@ class AdminMasterController extends Controller
     }
 
     public function updateML(Request $request, $id){
+        $request->validate([
+            'nama_mulok' => 'required',
+        ]);
         Mulok::where('id', $id)->
         update([
             'nama_mulok' => $request->nama_mulok,
@@ -326,6 +390,9 @@ class AdminMasterController extends Controller
     }
 
     public function storeSikap(Request $request){
+        $request->validate([
+            'nama_sikap' => 'required',
+        ]);
         Sikap::create([
             'nama_sikap' => $request->nama_sikap,
         ]);
@@ -339,6 +406,9 @@ class AdminMasterController extends Controller
     }
 
     public function updateSikap(Request $request, $id){
+        $request->validate([
+            'nama_sikap' => 'required',
+        ]);
         Sikap::where('id', $id)->
         update([
             'nama_sikap' => $request->nama_sikap,
@@ -372,6 +442,9 @@ class AdminMasterController extends Controller
     }
 
     public function storeSMP(Request $request){
+        $request->validate([
+            'nama_submapel' => 'required',
+        ]);
         SubMapel::create([
             'id_mapel' => $request->id_mapel,
             'nama_submapel' => $request->nama_submapel,
@@ -388,6 +461,9 @@ class AdminMasterController extends Controller
     }
 
     public function updateSMP(Request $request, $id){
+        $request->validate([
+            'nama_submapel' => 'required',
+        ]);
         SubMapel::where('id', $id)->
         update([
             'id_mapel' => $request->id_mapel,
@@ -422,6 +498,9 @@ class AdminMasterController extends Controller
     }
 
     public function storeSML(Request $request){
+        $request->validate([
+            'nama_submulok' => 'required',
+        ]);
         SubMulok::create([
             'id_mulok' => $request->id_mulok,
             'nama_submulok' => $request->nama_submulok,
@@ -437,6 +516,9 @@ class AdminMasterController extends Controller
     }
 
     public function updateSML(Request $request, $id){
+        $request->validate([
+            'nama_submulok' => 'required',
+        ]);
         SubMulok::where('id', $id)->
         update([
             'id_mulok' => $request->id_mulok,
@@ -470,6 +552,9 @@ class AdminMasterController extends Controller
     }
 
     public function storeEkskul(Request $request){
+        $request->validate([
+            'nama_ekskul' => 'required',
+        ]);
         Ekstrakulikuler::create([
             'nama_ekstrakulikuler' => $request->nama_ekskul,
         ]);
@@ -483,6 +568,9 @@ class AdminMasterController extends Controller
     }
 
     public function updateEkskul(Request $request, $id){
+        $request->validate([
+            'nama_ekskul' => 'required',
+        ]);
         Ekstrakulikuler::where('id', $id)->
         update([
             'nama_ekstrakulikuler' => $request->nama_ekskul,
@@ -548,6 +636,10 @@ class AdminMasterController extends Controller
     }
 
     public function storeTA(Request $request){
+        $request->validate([
+            'tahun_ajaran' => 'required',
+            'status' => 'required',
+        ]);
         TahunAktif::create([
             'tahun_ajaran' => $request->tahun_ajaran,
             'status' => $request->status,
@@ -562,6 +654,10 @@ class AdminMasterController extends Controller
     }
 
     public function updateTA(Request $request, $id){
+        $request->validate([
+            'tahun_ajaran' => 'required',
+            'status' => 'required',
+        ]);
         TahunAktif::where('id', $id)->
         update([
             'tahun_ajaran' => $request->tahun_ajaran,
@@ -595,6 +691,11 @@ class AdminMasterController extends Controller
     }
 
     public function storeSekolah(Request $request){
+        $request->validate([
+            'nama_sekolah' => 'required',
+            'npsn' => 'required|numeric',
+            'alamat' => 'required',
+        ]);
         Sekolah::create([
             'nama_sekolah' => $request->nama_sekolah,
             'npsn' => $request->npsn,
@@ -610,6 +711,11 @@ class AdminMasterController extends Controller
     }
 
     public function updateSekolah(Request $request, $id){
+        $request->validate([
+            'nama_sekolah' => 'required',
+            'npsn' => 'required|numeric',
+            'alamat' => 'required',
+        ]);
         Sekolah::where('id',$id)->
         update([
             'nama_sekolah' => $request->nama_sekolah,

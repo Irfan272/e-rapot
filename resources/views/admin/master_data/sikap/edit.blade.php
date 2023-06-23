@@ -29,8 +29,12 @@
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Nama Sikap<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input value="{{ $s->nama_sikap }}" class="form-control" data-validate-length-range="6" data-validate-words="2" name="nama_sikap" required="required" />
-                                    </div>
+                                        <input value="{{ $s->nama_sikap }}" class="@error('nama_sikap') parsley-error @enderror form-control" data-validate-length-range="6" data-validate-words="2" name="nama_sikap" required="required" />
+                                        @error('nama_sikap')
+                                        <ul class="parsley-errors-list filled">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>   
+                                        @enderror </div>
                                 </div>
                                
                           

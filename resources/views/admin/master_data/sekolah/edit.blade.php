@@ -30,19 +30,35 @@
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Nama Sekolah<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input value="{{ $s->nama_sekolah }}" class="form-control" data-validate-length-range="6" data-validate-words="2" name="nama_sekolah" required="required" />
+                                        <input value="{{ $s->nama_sekolah }}" class="@error('nama_sekolah') parsley-error @enderror form-control" data-validate-length-range="6" data-validate-words="2" name="nama_sekolah" required="required" />
+                                        @error('nama_sekolah')
+                                        <ul class="parsley-errors-list filled">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>   
+                                        @enderror 
                                     </div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">NPSN<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input value="{{ $s->npsn }}" class="form-control" data-validate-length-range="6" data-validate-words="2" name="npsn" required="required" />
+                                        <input value="{{ $s->npsn }}" class="@error('npsn') parsley-error @enderror form-control" data-validate-length-range="6" data-validate-words="2" name="npsn" required="required" />
+                                        @error('npsn')
+                                        <ul class="parsley-errors-list filled">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>   
+                                        @enderror 
                                     </div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Alamat<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <textarea required="required" name='alamat' style="width: 100%">{{ $s->alamat }}</textarea></div>
+                                        <textarea class="@error('alamat') parsley-error @enderror" required="required" name='alamat' style="width: 100%">{{ $s->alamat }}</textarea>
+                                        @error('alamat')
+                                        <ul class="parsley-errors-list filled">
+                                            <li class="parsley-required">{{ $message }}</li>
+                                        </ul>   
+                                        @enderror 
+                                    </div>
                                 </div>
                                 
                                 <div class="ln_solid">
