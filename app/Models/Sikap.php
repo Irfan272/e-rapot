@@ -10,4 +10,8 @@ class Sikap extends Model
     use HasFactory;
 
     protected $fillable = ['nama_sikap'];
+
+    public function setSikap(){
+        return $this->hasMany(SetNilaiSikap::class);
+    }
 }

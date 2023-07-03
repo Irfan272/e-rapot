@@ -39,6 +39,7 @@
                   <table id="datatable" class="table table-striped table-bordered " style="width:100%">
                     <thead>
                       <tr class="text-center">
+                        <th>No</th>
                         <th>NIS</th>
                         <th>NISN</th>
                         <th>Nama Lengkap</th>
@@ -47,7 +48,7 @@
                         <th>Tempat Lahir</th>
                         <th>Tanggal Lahir</th>
                         <th>Alamat</th>
-                        <th style="width: 25%">Action</th>
+                        <th style="width: 21%">Action</th>
                       </tr>
                     </thead>
 
@@ -55,6 +56,7 @@
                     <tbody>
                       @foreach ($siswa as $s)
                         <tr>
+                          <td >{{ $loop->iteration }}</td>
                         <td class="text-center">{{ $s->NIS }}</td>
                         <td class="text-center">{{ $s->NISN }}</td>
                         <td>{{ ucwords($s->NAMA) }}</td>

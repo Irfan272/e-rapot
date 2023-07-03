@@ -11,8 +11,8 @@ class Siswa extends Model
 
     protected $fillable = [
         'NAMA',
-        'NIS',
-        'NISN',
+        'nis',
+        'nisn',
         'jenis_kelamin',
         'tempat_lahir',
         'tgl_lahir',
@@ -28,4 +28,17 @@ class Siswa extends Model
         'berat_badan',
         'golongan_darah',
     ];
+
+    public function setKelas(){
+        return $this->hasMany(setKelas::class);
+    }
+
+    public function setNilaiMapel(){
+        return $this->hasMany(setKelas::class);
+    }
+
+    public function User(){
+        return $this->hasOne(User::class, 'id_siswa');
+    }
+
 }

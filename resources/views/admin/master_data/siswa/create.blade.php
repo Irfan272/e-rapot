@@ -10,6 +10,15 @@
                 <div class="title_left">
                     <h3>Form Siswa</h3>
                 </div>
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
               
             </div>
@@ -152,7 +161,7 @@
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">No. Telepon Ayah<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input value="{{ old('no_ayah') }}" class="@error('no_ayah') parsley-error @enderror form-control" class='optional' name="no_ayah" data-validate-length-range="5,15" type="text" />
+                                        <input value="{{ old('no_ayah') }}" class="@error('no_ayah') parsley-error @enderror form-control" class='optional' name="no_ayah" pattern="[0-9]{6,13}"  type="text" />
                                         @error('no_ayah')
                                         <ul class="parsley-errors-list filled">
                                             <li class="parsley-required">{{ $message }}</li>
@@ -163,7 +172,7 @@
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">No. Telepon Ibu<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input value="{{ old('no_ibu') }}" class="@error('no_ibu') parsley-error @enderror form-control" class='optional' name="no_ibu" data-validate-length-range="5,15" type="text" />
+                                        <input value="{{ old('no_ibu') }}" class="@error('no_ibu') parsley-error @enderror form-control" class='optional' name="no_ibu" type="text" />
                                         @error('no_ibu')
                                         <ul class="parsley-errors-list filled">
                                             <li class="parsley-required">{{ $message }}</li>

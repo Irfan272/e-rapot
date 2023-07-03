@@ -61,6 +61,7 @@
                         <td style="text-align: left">
                           {{-- <a href="/admin/set_kelas/view/{$id}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a> --}}
                           {{-- <a href="/admin/set_kelas/edit/{{ $s->id }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a> --}}
+                          <a href="/admin/set_kelas/edit/{{ $s->id }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                           <form action="/admin/set_kelas/delete/{{$s->id}}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')

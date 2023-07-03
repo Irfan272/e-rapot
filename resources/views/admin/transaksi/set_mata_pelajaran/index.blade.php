@@ -10,11 +10,11 @@
           </div>
 
           <div class="col-md-12 col-sm-12 ">
-              <a href="#" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Tambah Data
-                  Guru</a>
+              <a href="/admin/set_mp/create" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Tambah Data
+                Set Mata Pelajaran</a>
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>Default Example <small>Users</small></h2>
+                  <h2>Tabel Data <small>Set Mata Pelajaran</small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -29,31 +29,34 @@
                   <table id="datatable" class="table table-striped table-bordered " style="width:100%">
                     <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>No</th>
+                        <th>Mata Pelajaran</th>
+                        <th>Kelas</th>
+                        <th>Tahun Ajaran</th>
                         <th style="width: 25%">Action</th>
                       </tr>
                     </thead>
-
-
                     <tbody>
-                        <tr >
-                        <td >Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                        <td style="text-align: left">
-                          <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                          <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                          <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                        </td>
-                      </tr>
+                      @foreach ($mapel as $mp)
+                          
+                      <tr >
+                      <td >{{ $loop->iteration }}</td>
+                      <td>{{ $mp->mapel->nama_mapel }}</td>
+                      <td>{{ $mp->kelas->nama_kelas }}</td>
+                      <td>{{ $mp->tahun_ajaran->tahun_ajaran }}</td>           
+                      <td style="text-align: left">
+                        {{-- <a href="/admin/set_kelas/view/{$id}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a> --}}
+                        {{-- <a href="/admin/set_kelas/edit/{{ $s->id }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a> --}}
+                        <a href="/admin/set_mp/edit/{{ $mp->id }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                        <form action="/admin/set_mp/delete/{{$mp->id}}" method="POST" class="d-inline">
+                          @csrf
+                          @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </button>
+                      </form>
+                      </td>
+                    </tr>
+                    
+                    @endforeach
                       
                     </tbody>
                   </table>

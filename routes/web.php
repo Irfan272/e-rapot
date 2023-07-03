@@ -121,6 +121,17 @@ Route::delete('/admin/tahun_aktif/delete/{id}', [App\Http\Controllers\AdminMaste
 // Route::get('/admin/tahun_aktif/view/{id}', [App\Http\Controllers\AdminMasterController::class, 'viewTA']);
 // Ending Tahun Aktif
 
+// Akun
+Route::get('/admin/akun', [App\Http\Controllers\AdminMasterController::class, 'indexAkun']);
+Route::get('/admin/akun/create', [App\Http\Controllers\AdminMasterController::class, 'createAkun']);
+Route::post('/admin/akun/store', [App\Http\Controllers\AdminMasterController::class, 'storeAkun']);
+Route::get('/admin/akun/edit/{id}', [App\Http\Controllers\AdminMasterController::class, 'editAkun']);
+Route::patch('/admin/akun/update/{id}', [App\Http\Controllers\AdminMasterController::class, 'updateAkun']);
+Route::delete('/admin/akun/delete/{id}', [App\Http\Controllers\AdminMasterController::class, 'destroyAkun']);
+Route::get('/admin/akun/view/{id}', [App\Http\Controllers\AdminMasterController::class, 'viewAkun']);
+// Ending Sekolah
+
+
 // Sekolah
 Route::get('/admin/sekolah', [App\Http\Controllers\AdminMasterController::class, 'indexSekolah']);
 Route::get('/admin/sekolah/create', [App\Http\Controllers\AdminMasterController::class, 'createSekolah']);
@@ -131,6 +142,31 @@ Route::delete('/admin/sekolah/delete/{id}', [App\Http\Controllers\AdminMasterCon
 Route::get('/admin/sekolah/view/{id}', [App\Http\Controllers\AdminMasterController::class, 'viewSekolah']);
 // Ending Sekolah
 
+
+// Akun
+Route::get('/admin/akun', [App\Http\Controllers\AdminMasterController::class, 'indexAkun']);
+Route::get('/admin/akun/create', [App\Http\Controllers\AdminMasterController::class, 'createAkun']);
+Route::post('/admin/akun/store', [App\Http\Controllers\AdminMasterController::class, 'storeAkun']);
+Route::get('/admin/akun/edit/{id}', [App\Http\Controllers\AdminMasterController::class, 'editSAkun']);
+Route::patch('/admin/akun/update/{id}', [App\Http\Controllers\AdminMasterController::class, 'updateAkun']);
+Route::delete('/admin/akun/delete/{id}', [App\Http\Controllers\AdminMasterController::class, 'destroyAkun']);
+Route::get('/admin/akun/view/{id}', [App\Http\Controllers\AdminMasterController::class, 'viewAkun']);
+
+
+// Akun Guru
+Route::middleware(['auth', 'CheckRole:admin'])->group(function (){
+    Route::get('/admin/akunGuru/create', [App\Http\Controllers\AdminMasterController::class, 'createAkunGuru']);
+    Route::post('/admin/akunGuru/store', [App\Http\Controllers\AdminMasterController::class, 'storeAkunGuru']);
+    Route::get('/admin/akunGuru/edit/{id}', [App\Http\Controllers\AdminMasterController::class, 'editSAkunGuru']);
+    Route::patch('/admin/akunGuru/update/{id}', [App\Http\Controllers\AdminMasterController::class, 'updateAkunGuru']);
+    Route::delete('/admin/akunGuru/delete/{id}', [App\Http\Controllers\AdminMasterController::class, 'destroyAkunGuru']);
+    Route::get('/admin/akunGuru/view/{id}', [App\Http\Controllers\AdminMasterController::class, 'viewAkunGuru']);
+    
+    
+});
+
+
+
 // Ending Master Data
 // Ending Controller Admin
 
@@ -138,14 +174,15 @@ Route::get('/admin/sekolah/view/{id}', [App\Http\Controllers\AdminMasterControll
 // Transaksi
 
 // Set Kelas
-
+Route::group(['middleware' => 'CheckRole:admin'], function () {
 Route::get('/admin/set_kelas', [App\Http\Controllers\AdminSetController::class, 'indexSetKelas']);
 Route::get('/admin/set_kelas/create', [App\Http\Controllers\AdminSetController::class, 'createSetKelas']);
 Route::post('/admin/set_kelas/store', [App\Http\Controllers\AdminSetController::class, 'storeSetKelas']);
-// Route::get('/admin/set_kelas/edit/{id}', [App\Http\Controllers\AdminSetController::class, 'editSetKelas']);
-// Route::patch('/admin/set_kelas/update/{id}', [App\Http\Controllers\AdminSetController::class, 'updateSetKelas']);
+Route::get('/admin/set_kelas/edit/{id}', [App\Http\Controllers\AdminSetController::class, 'editSetKelas']);
+Route::patch('/admin/set_kelas/update/{id}', [App\Http\Controllers\AdminSetController::class, 'updateSetKelas']);
 Route::delete('/admin/set_kelas/delete/{id}', [App\Http\Controllers\AdminSetController::class, 'destroySetKelas']);
-// Route::get('/admin/set_kelas/view/{id}', [App\Http\Controllers\AdminSetController::class, 'viewSetKelas']);
+Route::get('/admin/set_kelas/view/{id}', [App\Http\Controllers\AdminSetController::class, 'viewSetKelas']);
+});
 
 // Ending Kelas
 
@@ -161,8 +198,98 @@ Route::get('/admin/set_wk/view/{id}', [App\Http\Controllers\AdminSetController::
 
 // Ending Wali Kelas
 
+// Set Mata Pelajaran
+Route::get('/admin/set_mp', [App\Http\Controllers\AdminSetController::class, 'indexSetMP']);
+Route::get('/admin/set_mp/create', [App\Http\Controllers\AdminSetController::class, 'createSetMP']);
+Route::post('/admin/set_mp/store', [App\Http\Controllers\AdminSetController::class, 'storeSetMP']);
+Route::get('/admin/set_mp/edit/{id}', [App\Http\Controllers\AdminSetController::class, 'editSetMP']);
+Route::patch('/admin/set_mp/update/{id}', [App\Http\Controllers\AdminSetController::class, 'updateSetMP']);
+Route::delete('/admin/set_mp/delete/{id}', [App\Http\Controllers\AdminSetController::class, 'deleteSetMP']);
+Route::get('/admin/set_mp/view/{id}', [App\Http\Controllers\AdminSetController::class, 'viewSetMP']);
+
+
+// Ending Mata Pelajaran
+
+// Set Muatan Lokal
+Route::get('/admin/set_ml', [App\Http\Controllers\AdminSetController::class, 'indexSetML']);
+Route::get('/admin/set_ml/create', [App\Http\Controllers\AdminSetController::class, 'createSetML']);
+Route::post('/admin/set_ml/store', [App\Http\Controllers\AdminSetController::class, 'storeSetML']);
+Route::get('/admin/set_ml/edit/{id}', [App\Http\Controllers\AdminSetController::class, 'editSetML']);
+Route::patch('/admin/set_ml/update/{id}', [App\Http\Controllers\AdminSetController::class, 'updateSetML']);
+Route::delete('/admin/set_ml/delete/{id}', [App\Http\Controllers\AdminSetController::class, 'deleteSetML']);
+Route::get('/admin/set_ml/view/{id}', [App\Http\Controllers\AdminSetController::class, 'viewSetML']);
+
+// Ending Muatan Lokal
+
+// Set Set Nilai Ekstrakulikuler
+Route::get('/admin/nilai_ekskul', [App\Http\Controllers\AdminSetController::class, 'indexNilaiEkskul']);
+Route::get('/admin/nilai_ekskul/create', [App\Http\Controllers\AdminSetController::class, 'createNilaiEkskul']);
+Route::post('/admin/nilai_ekskul/store', [App\Http\Controllers\AdminSetController::class, 'storeNilaiEkskul']);
+Route::get('/admin/nilai_ekskul/edit/{id}', [App\Http\Controllers\AdminSetController::class, 'editNilaiEkskul']);
+Route::patch('/admin/nilai_ekskul/update/{id}', [App\Http\Controllers\AdminSetController::class, 'updateNilaiEkskul']);
+Route::delete('/admin/nilai_ekskul/delete/{id}', [App\Http\Controllers\AdminSetController::class, 'deleteNilaiEkskul']);
+Route::get('/admin/nilai_ekskul/view/{id}', [App\Http\Controllers\AdminSetController::class, 'viewNilaiEkskul']);
+
+
+
+// Ending Set Nilai Ekskul
+
+
+// Set Set Nilai Mapel
+Route::get('/admin/nilai_mp', [App\Http\Controllers\AdminSetController::class, 'indexNilaiMP']);
+Route::get('/admin/nilai_mp/create', [App\Http\Controllers\AdminSetController::class, 'createNilaiMP']);
+Route::post('/admin/nilai_mp/store', [App\Http\Controllers\AdminSetController::class, 'storeNilaiMP']);
+Route::get('/admin/nilai_mp/edit/{id}', [App\Http\Controllers\AdminSetController::class, 'editNilaiMP']);
+Route::patch('/admin/nilai_mp/update/{id}', [App\Http\Controllers\AdminSetController::class, 'updateNilaiMP']);
+Route::delete('/admin/nilai_mp/delete/{id}', [App\Http\Controllers\AdminSetController::class, 'deleteNilaiMP']);
+Route::get('/admin/nilai_mp/view/{id}', [App\Http\Controllers\AdminSetController::class, 'viewNilaiMP']);
+
+// Ending Set Nilai Mapel
+
+// Set Set Nilai Mulok
+Route::get('/admin/nilai_ml', [App\Http\Controllers\AdminSetController::class, 'indexNilaiML']);
+Route::get('/admin/nilai_ml/create', [App\Http\Controllers\AdminSetController::class, 'createNilaiML']);
+Route::post('/admin/nilai_ml/store', [App\Http\Controllers\AdminSetController::class, 'storeNilaiML']);
+Route::get('/admin/nilai_ml/edit/{id}', [App\Http\Controllers\AdminSetController::class, 'editNilaiML']);
+Route::patch('/admin/nilai_ml/update/{id}', [App\Http\Controllers\AdminSetController::class, 'updateNilaiML']);
+Route::delete('/admin/nilai_ml/delete/{id}', [App\Http\Controllers\AdminSetController::class, 'deleteNilaiML']);
+Route::get('/admin/nilai_ml/view/{id}', [App\Http\Controllers\AdminSetController::class, 'viewNilaiML']);
+
+
+// Ending Set Nilai Mapel
+
+// Set Nilai Sikap
+Route::get('/admin/nilai_sikap', [App\Http\Controllers\AdminSetController::class, 'indexNilaiSikap']);
+Route::get('/admin/nilai_sikap/create', [App\Http\Controllers\AdminSetController::class, 'createNilaiSikap']);
+Route::post('/admin/nilai_sikap/store', [App\Http\Controllers\AdminSetController::class, 'storeNilaiSikap']);
+Route::get('/admin/nilai_sikap/edit/{id}', [App\Http\Controllers\AdminSetController::class, 'editNilaiSikap']);
+Route::patch('/admin/nilai_sikap/update/{id}', [App\Http\Controllers\AdminSetController::class, 'updateNilaiSikap']);
+Route::delete('/admin/nilai_sikap/delete/{id}', [App\Http\Controllers\AdminSetController::class, 'deleteNilaiSikap']);
+Route::get('/admin/nilai_sikap/view/{id}', [App\Http\Controllers\AdminSetController::class, 'viewNilaiSikap']);
+
+
+// Ending Nilai Sikap
+
+
+
+
+
 // Ending Transaksi
 
 
 
 
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/login',  [App\Http\Controllers\LoginSiswaController::class, 'index']);
+Route::post('/login/siswa',  [App\Http\Controllers\LoginSiswaController::class, 'loginSiswa']);
+Route::post('/logout/siswa', [App\Http\Controllers\LoginSiswaController::class, 'logoutSiswa']);
+
+
+Route::get('/loginGuru',  [App\Http\Controllers\LoginGuruController::class, 'index']);
+Route::post('/login/guru',  [App\Http\Controllers\LoginGuruController::class, 'loginGuru']);
+Route::post('/logout/guru', [App\Http\Controllers\LoginGuruController::class, 'logoutGuru']);

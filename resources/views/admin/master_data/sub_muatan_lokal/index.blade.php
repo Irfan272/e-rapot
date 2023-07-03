@@ -40,7 +40,7 @@
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>ID Muatan Lokal</th>
+                        <th>Nama Muatan Lokal</th>
                         <th>Nama Sub Muatan Lokal</th>
              
                         <th style="width: 35%">Action</th>
@@ -53,7 +53,7 @@
                           
                       <tr >
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $sm->id_mulok }}</td>
+                        <td>{{ $sm->mulok->nama_mulok }}</td>
                         <td>{{ $sm->nama_submulok }}</td>
                         
                         <td style="text-align: left">

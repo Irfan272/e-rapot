@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             // $table->string('NIP')->unique();
             $table->string('NAMA');
-            $table->integer('NIS')->unique();
-            $table->integer('NISN')->unique();
+            $table->integer('nis')->unique();
+            $table->integer('nisn')->unique();
             $table->string('jenis_kelamin');
             $table->string('tempat_lahir');
             $table->date('tgl_lahir');
@@ -28,8 +28,8 @@ return new class extends Migration
             $table->string('nama_ibu');
             $table->string('pekerjaan_ayah');
             $table->string('pekerjaan_ibu');
-            $table->string('no_ayah');
-            $table->string('no_ibu');
+            $table->string('no_ayah')->nullable();
+            $table->string('no_ibu')->nullable();
             $table->string('tinggi_badan');
             $table->string('berat_badan');
             $table->string('golongan_darah');

@@ -55,7 +55,7 @@
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Tanggal Lahir<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input readonly class="form-control" class='date' type="date" name="date" required='required'></div>
+                                        <input readonly class="form-control" class='date' readonly value="{{ ucwords($s->tgl_lahir)}}" type="date" name="date" required='required'></div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Agama<span class="required">*</span></label>
@@ -95,7 +95,7 @@
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">No. Telepon Ibu<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input readonly value="{{ ucwords($s->nama_ibu) }}" class="form-control" class='optional' name="no_ibu" data-validate-length-range="5,15" type="text" /></div>
+                                        <input readonly value="{{ ucwords($s->no_ibu) }}" class="form-control" class='optional' name="no_ibu" data-validate-length-range="5,15" type="text" /></div>
                                 </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Tinggi Badan<span class="required">*</span></label>

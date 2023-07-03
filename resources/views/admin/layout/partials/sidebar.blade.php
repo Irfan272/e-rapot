@@ -29,7 +29,7 @@
                 <li><a href="/admin/sub_muatan_lokal">Data Sub Muatan Lokal</a></li>
                 <li><a href="/admin/ekstrakulikuler">Data Ekstrakulikuler</a></li>
                 <li><a href="/admin/tahun_aktif">Data Tahun Aktif</a></li>
-                <li><a href="#">Data Akun</a></li>
+                <li><a href="/admin/akun">Data Akun</a></li>
                 <li><a href="/admin/sekolah">Data Sekolah</a></li>
               </ul>
             </li>
@@ -39,11 +39,11 @@
                 <li><a href="/admin/set_kelas">Set Kelas</a></li>
                 <li><a href="/admin/set_wk">Set Wali Kelas</a></li>
                 <li><a href="/admin/set_mp">Set Mata Pelajaran</a></li>
-                <li><a href="#">Set Muatan Lokal</a></li>
-                <li><a href="#">Input Nilai Ekstra Kulikuler</a></li>
-                <li><a href="/admin/set_nilai_mp">Input Nilai Mata Pelajaran</a></li>
-                <li><a href="#">Input Nilai Muatan Lokal</a></li>
-                <li><a href="#">Input Nilai Sikap</a></li>
+                <li><a href="/admin/set_ml">Set Muatan Lokal</a></li>
+                <li><a href="/admin/nilai_ekskul">Input Nilai Ekstra Kulikuler</a></li>
+                <li><a href="/admin/nilai_mp">Input Nilai Mata Pelajaran</a></li>
+                <li><a href="/admin/nilai_ml">Input Nilai Muatan Lokal</a></li>
+                <li><a href="/admin/nilai_sikap">Input Nilai Sikap</a></li>
               </ul>
             </li>
             <li><a><i class="fa fa-file"></i> Laporan <span class="fa fa-chevron-down"></span></a>
