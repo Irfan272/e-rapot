@@ -11,7 +11,15 @@
                     <h3>Form Set Kelas</h3>
                 </div>
 
-              
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             </div>
             <div class="clearfix"></div>
 
@@ -26,7 +34,7 @@
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Nama Siswa<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select name="siswa" class="form-control selectpicker" data-live-search="true"  required='required' data-validate-length-range="8,20">
+                                        <select name="id_siswa" id="id_siswa" class="form-control selectpicker" data-live-search="true"  required='required'>
                                             <option readonly value="">Pilih Siswa (Nama, NISN)</option>
                                             @foreach ($siswa as $s)
                                             <option value="{{ $s->id }}">{{ $s->NAMA }}, {{ $s->NISN }}</option>
@@ -37,7 +45,7 @@
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Kelas<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select name="kelas" class="form-control selectpicker" data-live-search="true"  required='required' data-validate-length-range="8,20">
+                                        <select name="id_kelas" class="form-control selectpicker" data-live-search="true"  required='required' data-validate-length-range="8,20">
                                             <option readonly value="">Pilih Kelas</option>
                                             @foreach ($kelas as $k)
                                             <option value="{{ $k->id }}">{{ $k->nama_kelas }}</option>
@@ -48,7 +56,7 @@
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Tahun Ajaran<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select name="tahun" class="form-control selectpicker" data-live-search="true"  required='required' data-validate-length-range="8,20">
+                                        <select name="id_ta" class="form-control selectpicker" data-live-search="true"  required='required' data-validate-length-range="8,20">
                                             <option readonly value="">Pilih Tahun Ajaran</option>
                                             @foreach ($tahun as $t)
                                             <option value="{{ $t->id }}">{{ $t->tahun_ajaran }}</option>

@@ -13,7 +13,9 @@ use App\Models\SubMulok;
 use App\Models\Ekstrakulikuler;
 use App\Models\TahunAktif;
 use App\Models\Sekolah;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminMasterController extends Controller
 {
@@ -42,16 +44,17 @@ class AdminMasterController extends Controller
             'nama_ibu' => 'required|string',
             'pekerjaan_ayah' => 'required|string',
             'pekerjaan_ibu' => 'required|string',
-            'no_ayah' => 'required|numeric|between:6,13',
-            'no_ibu' => 'required|numeric|between:6,13',
+            'no_ayah' => 'required|string|max:255',
+            'no_ayah' => 'required|string|max:255',
+            // 'no_ibu' => 'nullable|numeric|between:0,13',
             'tinggi_badan' => 'required|numeric|max_digits:3',
             'berat_badan' => 'required|numeric|max_digits:3',
             'golongan_darah' => 'required',
         ]); 
         Siswa::create([
         'NAMA' => $request->nama,
-        'NIS' =>$request->nis,
-        'NISN'=> $request->nisn,
+        'nis' =>$request->nis,
+        'nisn'=> $request->nisn,
         'jenis_kelamin'=> $request->kelamin,
         'tempat_lahir' => $request->tempat_lahir,
         'tgl_lahir'=> $request->tgl_lahir,
@@ -90,8 +93,8 @@ class AdminMasterController extends Controller
             'nama_ibu' => 'required|string',
             'pekerjaan_ayah' => 'required|string',
             'pekerjaan_ibu' => 'required|string',
-            'no_ayah' => 'required|numeric|between:6,13',
-            'no_ibu' => 'required|numeric|between:6,13',
+            'no_ayah' => 'required|string|max:255',
+            'no_ibu' => 'required|string|max:255',
             'tinggi_badan' => 'required|numeric|max_digits:3',
             'berat_badan' => 'required|numeric|max_digits:3',
             'golongan_darah' => 'required',
@@ -153,7 +156,7 @@ class AdminMasterController extends Controller
             'tgl_lahir' => 'required',
             'agama' => 'required|string',
             'alamat' => 'required',
-            'telpon' => 'required|numeric|between:6,13',
+            'telpon' => 'required|string|max:255',
             'kelamin' => 'required',
             'pendidikan' => 'required',
         ]);
@@ -431,7 +434,7 @@ class AdminMasterController extends Controller
     // Master Sub Mapel
 
     public function indexSMP(){
-        $subMapel = SubMapel::all();
+        $subMapel = SubMapel::with('mapel')->get();
         return view('admin.master_data.sub_mata_pelajaran.index', compact('subMapel'));
     }
 
@@ -487,7 +490,7 @@ class AdminMasterController extends Controller
     // Master Sub Muatan Lokal
 
     public function indexSML(){
-        $subMulok = SubMulok::all();
+        $subMulok = SubMulok::with('mulok')->get();
         return view('admin.master_data.sub_muatan_lokal.index', compact('subMulok'));
     }
 
@@ -677,6 +680,140 @@ class AdminMasterController extends Controller
     }
 
     // Ending Master Data Tahun Aktif
+
+
+    // Master Akun
+    public function indexAkun(){
+        $akun = User::all();
+        return view('admin.master_data.akun.index', compact('akun'));
+    }
+
+
+    // Siswa
+  
+    public function createAkun(){
+        $siswa = Siswa::all();
+        return view('admin.master_data.akun.create', compact('siswa'));
+    }
+
+    public function storeAkun(Request $request){
+        $validasiData = $request->validate([
+            'id_siswa' => 'required',
+            'password' =>  'required|string|max:20',
+            'role' => 'required',
+        ]);
+
+        $validasiData['password'] = Hash::make($validasiData['password']);
+        
+        User::create($validasiData);
+       
+
+        return redirect('/admin/akun')->with('status', 'Data berhasil ditambah!');
+    }
+
+    public function editAkun($id){
+        $akun = User::where('id', $id)->get();
+        return view('admin.master_data.akun.edit', compact('akun'));
+    }
+
+    public function updateAkun(Request $request, $id){
+        $request->validate([
+            'nama_sekolah' => 'required',
+            'npsn' => 'required|numeric',
+            'alamat' => 'required',
+        ]);
+        User::where('id',$id)->
+        update([
+            'nama_sekolah' => $request->nama_sekolah,
+            'npsn' => $request->npsn,
+            'alamat' => $request->alamat
+        ]);
+
+        return redirect('/admin/akun')->with('status', 'Data berhasil diubah!');
+    }
+
+    public function destroyAkun($id){
+        User::destroy($id);
+        return redirect('/admin/akun')->with('status', 'Data berhasil dihapus!');
+    }
+
+    public function viewAkun($id){
+        $akun = User::where('id', $id)->get();
+        return view('admin.master_data.akun.view', compact('akun'));
+    }
+
+
+    // Guru
+    public function createAkunGuru(){
+        $guru = Guru::all();
+        return view('admin.master_data.akun.createGuru', compact('guru'));
+    }
+
+    public function storeAkunGuru(Request $request){
+        $validasiData = $request->validate([
+            'id_guru' => 'required',
+            'password' =>  'required|string|max:20',
+            'role' => 'required',
+        ]);
+
+        $validasiData['password'] = Hash::make($validasiData['password']);
+        
+        User::create($validasiData);
+       
+
+        return redirect('/admin/akun')->with('status', 'Data berhasil ditambah!');
+    }
+
+    public function editAkunGuru($id){
+        $akun = User::where('id', $id)->get();
+        return view('admin.master_data.akun.edit', compact('akun'));
+    }
+
+    public function updateAkunGuru(Request $request, $id){
+        $request->validate([
+            'nama_sekolah' => 'required',
+            'npsn' => 'required|numeric',
+            'alamat' => 'required',
+        ]);
+        User::where('id',$id)->
+        update([
+            'nama_sekolah' => $request->nama_sekolah,
+            'npsn' => $request->npsn,
+            'alamat' => $request->alamat
+        ]);
+
+        return redirect('/admin/akun')->with('status', 'Data berhasil diubah!');
+    }
+
+    public function destroyAkunGuru($id){
+        User::destroy($id);
+        return redirect('/admin/akun')->with('status', 'Data berhasil dihapus!');
+    }
+
+    public function viewAkunGuru($id){
+        $akun = User::where('id', $id)->get();
+        return view('admin.master_data.akun.view', compact('akun'));
+    }
+
+
+
+
+    // Ending Akun
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // Master Sub Mapel
 

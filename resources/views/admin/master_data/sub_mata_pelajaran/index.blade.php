@@ -40,7 +40,7 @@
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>ID Mata Pelajaran</th>
+                        <th>Nama Mata Pelajaran</th>
                         <th>Nama Sub Mata Pelajaran</th>
              
                         <th style="width: 35%">Action</th>
@@ -53,7 +53,7 @@
                           
                       <tr >
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $sm->id_mapel }}</td>
+                        <td>{{ $sm->mapel->nama_mapel }}</td>
                         <td>{{ $sm->nama_submapel }}</td>
                         
                         <td style="text-align: left">

@@ -20,7 +20,7 @@
                     <div class="x_panel">
                         
                         <div class="x_content">
-                            <form class="" action="/admin/sub_mata_pelajaran/store" method="post" novalidate>
+                            <form class="" action="/admin/sikap/store" method="post" novalidate>
                                @csrf
                                 <span class="section">Input Data Sikap</span>
                                 <div class="field item form-group">

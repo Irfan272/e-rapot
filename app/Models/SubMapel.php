@@ -10,4 +10,12 @@ class SubMapel extends Model
     use HasFactory;
 
     protected $fillable = ['id_mapel', 'nama_submapel'];
+
+    public function Mapel(){
+        return $this->belongsTo(Mapel::class, 'id_mapel');
+    }
+
+    public function SetNilaiMapel(){
+        return $this->hasMany(SetNilaiMapel::class);
+    }
 }

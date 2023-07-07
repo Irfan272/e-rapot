@@ -10,7 +10,7 @@
           </div>
 
           <div class="col-md-12 col-sm-12 ">
-              <a href="#" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Tambah Data
+              <a href="/admin/set_wk/create" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Tambah Data
                   Set Wali Kelas</a>
               <div class="x_panel">
                 <div class="x_title">
@@ -30,30 +30,35 @@
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>ID Set Kelas</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Set Kelas</th>
+                        <th>Guru</th>
+                        <th>Tahun Ajaran</th>
                         <th style="width: 25%">Action</th>
                       </tr>
                     </thead>
 
 
                     <tbody>
-                        <tr >
-                        <td >Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
+
+                      @foreach ($Wali as $w)
+                      <tr >
+                        <td >{{$loop->iteration}}</td>
+                        <td>{{$w->id_setkelas}}</td>
+                        <td>{{$w->guru->nama_lengkap}}</td>
+                        <td>{{$w->id_ta}}</td>
                         <td style="text-align: left">
-                          <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                          <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                          <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                          <a href="/admin/set_wk/view/{$id}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                          {{-- <a href="/admin/set_kelas/edit/{{ $s->id }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a> --}}
+                          <a href="/admin/set_wk/edit/{{ $w->id }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                          <form action="/admin/set_wk/delete/{{$w->id}}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                          <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </button>
+                        </form>
                         </td>
                       </tr>
+                      @endforeach
+                       
                       
                     </tbody>
                   </table>

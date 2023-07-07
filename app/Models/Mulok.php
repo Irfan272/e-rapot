@@ -10,4 +10,9 @@ class Mulok extends Model
     use HasFactory;
 
     protected $fillable = ['nama_mulok'];
+
+    public function setSubMulok(){
+        return $this->hasMany(SubMulok::class);
+    }
+    
 }

@@ -10,4 +10,9 @@ class Kelas extends Model
     use HasFactory;
 
     protected $fillable = ['nama_kelas'];
+    
+
+    public function setKelas(){
+        return $this->hasMany(SetKelas::class);
+    }
 }

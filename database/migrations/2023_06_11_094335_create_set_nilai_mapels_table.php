@@ -20,19 +20,19 @@ return new class extends Migration
             $table->string('semester');
             $table->unsignedBigInteger('id_mapel');
             $table->unsignedBigInteger('id_submapels');
-            $table->integer('nilai_fm1');
-            $table->integer('nilai_sm1');
-            $table->integer('nilai_fm2');
-            $table->integer('nilai_sm2');
-            $table->integer('nilai_fm3');
-            $table->integer('nilai_sm3');
-            $table->integer('nilai_fm4');
-            $table->integer('nilai_sm4');
-            $table->integer('nilai_fm5');
-            $table->integer('nilai_sm5');
-            $table->integer('nilai_fm6');
-            $table->integer('nilai_sm6');
-            $table->decimal('nilai_rata', 8, 2, false);
+            $table->integer('nilai_fm1')->nullable();;
+            $table->integer('nilai_sm1')->nullable();;
+            $table->integer('nilai_fm2')->nullable();;
+            $table->integer('nilai_sm2')->nullable();;
+            $table->integer('nilai_fm3')->nullable();;
+            $table->integer('nilai_sm3')->nullable();;
+            $table->integer('nilai_fm4')->nullable();;
+            $table->integer('nilai_sm4')->nullable();;
+            $table->integer('nilai_fm5')->nullable();;
+            $table->integer('nilai_sm5')->nullable();;
+            $table->integer('nilai_fm6')->nullable();;
+            $table->integer('nilai_sm6')->nullable();;
+            $table->decimal('nilai_rata', 8, 2, false)->nullable();;
 
 
 
