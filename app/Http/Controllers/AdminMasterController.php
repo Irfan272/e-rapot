@@ -16,6 +16,7 @@ use App\Models\Sekolah;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class AdminMasterController extends Controller
 {
@@ -684,8 +685,24 @@ class AdminMasterController extends Controller
 
     // Master Akun
     public function indexAkun(){
-        $akun = User::all();
-        return view('admin.master_data.akun.index', compact('akun'));
+        // $akun = User::all();
+        // return view('admin.master_data.akun.index', compact('akun'));
+        // $siswa = DB::table('users')->where('role', 'siswa')->get();
+        $siswa = DB::table('users')
+        ->where('role', 'siswa')
+        ->join('siswas', 'users.id_siswa', '=', 'siswas.id')
+        ->select('users.*', 'siswas.nisn', 'siswas.nama')
+        ->get();
+
+        // return $siswa;
+        // $admin = User::where('role', 'admin')->get();
+        $admin = DB::table('users')
+        ->where('role', 'admin')
+        ->join('gurus', 'users.id_guru', '=', 'gurus.id')
+        ->select('users.*', 'gurus.NIP', 'gurus.nama_lengkap')
+        ->get();
+        
+        return view('admin.master_data.akun.index', compact('siswa', 'admin'));
     }
 
 

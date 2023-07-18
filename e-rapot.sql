@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Jun 2023 pada 06.02
+-- Waktu pembuatan: 12 Jul 2023 pada 19.30
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.1.12
 
@@ -33,13 +33,6 @@ CREATE TABLE `ekstrakulikulers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data untuk tabel `ekstrakulikulers`
---
-
-INSERT INTO `ekstrakulikulers` (`id`, `nama_ekstrakulikuler`, `created_at`, `updated_at`) VALUES
-(1, 'Pramuka', '2023-06-29 05:05:31', '2023-06-29 05:05:31');
 
 -- --------------------------------------------------------
 
@@ -84,7 +77,8 @@ CREATE TABLE `gurus` (
 --
 
 INSERT INTO `gurus` (`id`, `NIP`, `nama_lengkap`, `tempat_lahir`, `tanggal_lahir`, `agama`, `alamat`, `no_telpon`, `jenis_kelamin`, `email`, `pendidikan_terakhir`, `created_at`, `updated_at`) VALUES
-(1, 231231, 'Aceh', 'serang', '2023-06-02', 'asdasdasd', 'Griya Serdang Indah Blok C.8 No.9\r\nGriya Serdang Indah Blok C.8 No.9', '081214805759', 'pria', 'admin@gmail.com', 'S1', '2023-06-29 04:49:10', '2023-06-29 04:49:10');
+(1, 231231, 'Irfan Fadillah', 'Tangerang', '2023-07-25', 'Islam', 'Griya Serdang Indah Blok C.8 No.9\r\nGriya Serdang Indah Blok C.8 No.9', '081214805759', 'pria', 'admin@gmail.com', 'SMA', '2023-07-02 11:09:23', '2023-07-02 11:09:23'),
+(2, 2345678, 'sri', 'Tangerang', '2023-07-19', 'Islam', 'Griya Serdang Indah Blok C.8 No.9\r\nGriya Serdang Indah Blok C.8 No.9', '081214805759', 'wanita', 'siapapun@gmail.com', 'S1', '2023-07-03 10:00:51', '2023-07-03 10:00:51');
 
 -- --------------------------------------------------------
 
@@ -99,14 +93,6 @@ CREATE TABLE `kelas` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `kelas`
---
-
-INSERT INTO `kelas` (`id`, `nama_kelas`, `created_at`, `updated_at`) VALUES
-(1, 'I - A', '2023-06-29 04:51:33', '2023-06-29 04:51:33'),
-(2, 'I - B', '2023-06-29 04:51:51', '2023-06-29 04:51:51');
-
 -- --------------------------------------------------------
 
 --
@@ -119,14 +105,6 @@ CREATE TABLE `mapels` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data untuk tabel `mapels`
---
-
-INSERT INTO `mapels` (`id`, `nama_mapel`, `created_at`, `updated_at`) VALUES
-(1, 'Bahasa Indonesia', '2023-06-29 04:52:40', '2023-06-29 04:52:40'),
-(2, 'Matematika', '2023-06-29 04:52:47', '2023-06-29 04:52:47');
 
 -- --------------------------------------------------------
 
@@ -145,13 +123,13 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2023_05_30_021633_create_siswas_table', 1),
-(6, '2023_05_30_021941_create_gurus_table', 1),
-(7, '2023_05_30_021957_create_kelas_table', 1),
+(1, '2014_10_12_100000_create_password_resets_table', 1),
+(2, '2019_08_19_000000_create_failed_jobs_table', 1),
+(3, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(4, '2023_05_30_021633_create_siswas_table', 1),
+(5, '2023_05_30_021941_create_gurus_table', 1),
+(6, '2023_05_30_021957_create_kelas_table', 1),
+(7, '2023_05_30_021960_create_users_table', 1),
 (8, '2023_05_30_022012_create_mapels_table', 1),
 (9, '2023_05_30_022104_create_tahun_aktifs_table', 1),
 (10, '2023_05_30_022341_create_set_kelas_table', 1),
@@ -167,7 +145,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (20, '2023_06_11_094308_create_set_ekstrakulikulers_table', 1),
 (21, '2023_06_11_094335_create_set_nilai_mapels_table', 1),
 (22, '2023_06_11_094352_create_set_nilai_muloks_table', 1),
-(23, '2023_06_11_094412_create_set_nilai_sikaps_table', 1);
+(23, '2023_06_11_094412_create_set_nilai_sikaps_table', 1),
+(24, '2023_07_01_041249_add_fields_to_users_table', 1);
 
 -- --------------------------------------------------------
 
@@ -181,13 +160,6 @@ CREATE TABLE `muloks` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data untuk tabel `muloks`
---
-
-INSERT INTO `muloks` (`id`, `nama_mulok`, `created_at`, `updated_at`) VALUES
-(1, 'Bahasa Jawa Serang', '2023-06-29 04:53:08', '2023-06-29 04:53:08');
 
 -- --------------------------------------------------------
 
@@ -234,13 +206,6 @@ CREATE TABLE `sekolahs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data untuk tabel `sekolahs`
---
-
-INSERT INTO `sekolahs` (`id`, `nama_sekolah`, `npsn`, `alamat`, `created_at`, `updated_at`) VALUES
-(1, 'SD ELFATIH', '20606058', 'asdasdasdsa', '2023-06-29 05:06:11', '2023-06-29 05:06:11');
 
 -- --------------------------------------------------------
 
@@ -332,15 +297,6 @@ CREATE TABLE `set_nilai_mapels` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `set_nilai_mapels`
---
-
-INSERT INTO `set_nilai_mapels` (`id`, `id_kelas`, `id_siswa`, `semester`, `id_mapel`, `id_submapels`, `nilai_fm1`, `nilai_sm1`, `nilai_fm2`, `nilai_sm2`, `nilai_fm3`, `nilai_sm3`, `nilai_fm4`, `nilai_sm4`, `nilai_fm5`, `nilai_sm5`, `nilai_fm6`, `nilai_sm6`, `nilai_rata`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 'Semester 2', 2, 1, 43, 76, 56, 87, 42, 45, 76, 98, 54, 23, 41, 87, '60.67', '2023-06-29 05:06:52', '2023-06-29 20:16:00'),
-(2, 2, 5, 'Semester 1', 1, 1, 65, 87, 78, 23, 78, 32, 32, 76, 34, 98, 67, 78, '62.33', '2023-06-29 05:07:32', '2023-06-29 20:20:50'),
-(3, 1, 1, 'Semester 1', 1, 1, 55, 54, 21, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '43.33', '2023-06-29 05:08:16', '2023-06-29 20:21:04');
-
 -- --------------------------------------------------------
 
 --
@@ -354,19 +310,19 @@ CREATE TABLE `set_nilai_muloks` (
   `semester` varchar(255) NOT NULL,
   `id_mulok` bigint(20) UNSIGNED NOT NULL,
   `id_submulok` bigint(20) UNSIGNED NOT NULL,
-  `nilai_fm1` int(11) NOT NULL,
-  `nilai_sm1` int(11) NOT NULL,
-  `nilai_fm2` int(11) NOT NULL,
-  `nilai_sm2` int(11) NOT NULL,
-  `nilai_fm3` int(11) NOT NULL,
-  `nilai_sm3` int(11) NOT NULL,
-  `nilai_fm4` int(11) NOT NULL,
-  `nilai_sm4` int(11) NOT NULL,
-  `nilai_fm5` int(11) NOT NULL,
-  `nilai_sm5` int(11) NOT NULL,
-  `nilai_fm6` int(11) NOT NULL,
-  `nilai_sm6` int(11) NOT NULL,
-  `nilai_rata` decimal(8,2) NOT NULL,
+  `nilai_fm1` int(11) DEFAULT NULL,
+  `nilai_sm1` int(11) DEFAULT NULL,
+  `nilai_fm2` int(11) DEFAULT NULL,
+  `nilai_sm2` int(11) DEFAULT NULL,
+  `nilai_fm3` int(11) DEFAULT NULL,
+  `nilai_sm3` int(11) DEFAULT NULL,
+  `nilai_fm4` int(11) DEFAULT NULL,
+  `nilai_sm4` int(11) DEFAULT NULL,
+  `nilai_fm5` int(11) DEFAULT NULL,
+  `nilai_sm5` int(11) DEFAULT NULL,
+  `nilai_fm6` int(11) DEFAULT NULL,
+  `nilai_sm6` int(11) DEFAULT NULL,
+  `nilai_rata` decimal(8,2) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -383,19 +339,19 @@ CREATE TABLE `set_nilai_sikaps` (
   `id_siswa` bigint(20) UNSIGNED NOT NULL,
   `semester` varchar(255) NOT NULL,
   `id_sikap` bigint(20) UNSIGNED NOT NULL,
-  `nilai_fm1` int(11) NOT NULL,
-  `nilai_sm1` int(11) NOT NULL,
-  `nilai_fm2` int(11) NOT NULL,
-  `nilai_sm2` int(11) NOT NULL,
-  `nilai_fm3` int(11) NOT NULL,
-  `nilai_sm3` int(11) NOT NULL,
-  `nilai_fm4` int(11) NOT NULL,
-  `nilai_sm4` int(11) NOT NULL,
-  `nilai_fm5` int(11) NOT NULL,
-  `nilai_sm5` int(11) NOT NULL,
-  `nilai_fm6` int(11) NOT NULL,
-  `nilai_sm6` int(11) NOT NULL,
-  `nilai_rata` decimal(8,2) NOT NULL,
+  `nilai_fm1` int(11) DEFAULT NULL,
+  `nilai_sm1` int(11) DEFAULT NULL,
+  `nilai_fm2` int(11) DEFAULT NULL,
+  `nilai_sm2` int(11) DEFAULT NULL,
+  `nilai_fm3` int(11) DEFAULT NULL,
+  `nilai_sm3` int(11) DEFAULT NULL,
+  `nilai_fm4` int(11) DEFAULT NULL,
+  `nilai_sm4` int(11) DEFAULT NULL,
+  `nilai_fm5` int(11) DEFAULT NULL,
+  `nilai_sm5` int(11) DEFAULT NULL,
+  `nilai_fm6` int(11) DEFAULT NULL,
+  `nilai_sm6` int(11) DEFAULT NULL,
+  `nilai_rata` decimal(8,2) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -428,13 +384,6 @@ CREATE TABLE `sikaps` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `sikaps`
---
-
-INSERT INTO `sikaps` (`id`, `nama_sikap`, `created_at`, `updated_at`) VALUES
-(1, 'Kejujuran', '2023-06-29 04:53:23', '2023-06-29 04:53:23');
-
 -- --------------------------------------------------------
 
 --
@@ -444,8 +393,8 @@ INSERT INTO `sikaps` (`id`, `nama_sikap`, `created_at`, `updated_at`) VALUES
 CREATE TABLE `siswas` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `NAMA` varchar(255) NOT NULL,
-  `NIS` int(11) NOT NULL,
-  `NISN` int(11) NOT NULL,
+  `nis` int(11) NOT NULL,
+  `nisn` int(11) NOT NULL,
   `jenis_kelamin` varchar(255) NOT NULL,
   `tempat_lahir` varchar(255) NOT NULL,
   `tgl_lahir` date NOT NULL,
@@ -468,9 +417,8 @@ CREATE TABLE `siswas` (
 -- Dumping data untuk tabel `siswas`
 --
 
-INSERT INTO `siswas` (`id`, `NAMA`, `NIS`, `NISN`, `jenis_kelamin`, `tempat_lahir`, `tgl_lahir`, `AGAMA`, `ALAMAT`, `nama_ayah`, `nama_ibu`, `pekerjaan_ayah`, `pekerjaan_ibu`, `no_ayah`, `no_ibu`, `tinggi_badan`, `berat_badan`, `golongan_darah`, `created_at`, `updated_at`) VALUES
-(1, 'Irfan Fadillah', 11111111, 1231231, 'pria', 'Tangerang', '2023-06-07', 'asdasdadas', 'Griya Serdang Indah Blok C.8 No.9\r\nGriya Serdang Indah Blok C.8 No.9', 'Ashari', 'asd', 'Wiraswasta', 'Ibu Rumah Tangga', '081214805759', '081214805759', '122', '67', 'A', '2023-06-29 04:00:14', '2023-06-29 04:00:14'),
-(5, 'Irfan Fadillah', 1101191052, 7446122, 'pria', 'Tangerang', '2023-06-17', 'Islam', 'Griya Serdang Indah Blok C.8 No.9\r\nGriya Serdang Indah Blok C.8 No.9', 'Ashari', 'asd', 'Wiraswasta', 'Ibu Rumah Tangga', '081214805759', '-', '122', '67', 'A', '2023-06-29 04:04:05', '2023-06-29 04:04:05');
+INSERT INTO `siswas` (`id`, `NAMA`, `nis`, `nisn`, `jenis_kelamin`, `tempat_lahir`, `tgl_lahir`, `AGAMA`, `ALAMAT`, `nama_ayah`, `nama_ibu`, `pekerjaan_ayah`, `pekerjaan_ibu`, `no_ayah`, `no_ibu`, `tinggi_badan`, `berat_badan`, `golongan_darah`, `created_at`, `updated_at`) VALUES
+(1, 'Irfan Fadillah', 11111111, 12345, 'pria', 'Serang', '2023-07-12', 'Islam', 'Griya Serdang Indah Blok C.8 No.9\r\nGriya Serdang Indah Blok C.8 No.9', 'Ashari', 'asd', 'Wiraswasta', 'Ibu Rumah Tangga', '081214805759', '081214805759', '122', '44', 'A', '2023-07-02 10:13:31', '2023-07-02 10:13:31');
 
 -- --------------------------------------------------------
 
@@ -486,13 +434,6 @@ CREATE TABLE `sub_mapels` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `sub_mapels`
---
-
-INSERT INTO `sub_mapels` (`id`, `id_mapel`, `nama_submapel`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Bilangan', '2023-06-29 04:53:35', '2023-06-29 04:53:35');
-
 -- --------------------------------------------------------
 
 --
@@ -506,13 +447,6 @@ CREATE TABLE `sub_muloks` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data untuk tabel `sub_muloks`
---
-
-INSERT INTO `sub_muloks` (`id`, `id_mulok`, `nama_submulok`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Bicara', '2023-06-29 05:02:58', '2023-06-29 05:02:58');
 
 -- --------------------------------------------------------
 
@@ -528,13 +462,6 @@ CREATE TABLE `tahun_aktifs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `tahun_aktifs`
---
-
-INSERT INTO `tahun_aktifs` (`id`, `tahun_ajaran`, `status`, `created_at`, `updated_at`) VALUES
-(1, '2012/2013', 'Aktif', '2023-06-29 05:05:53', '2023-06-29 05:05:53');
-
 -- --------------------------------------------------------
 
 --
@@ -543,14 +470,25 @@ INSERT INTO `tahun_aktifs` (`id`, `tahun_ajaran`, `status`, `created_at`, `updat
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `id_siswa` bigint(20) UNSIGNED DEFAULT NULL,
+  `id_guru` bigint(20) UNSIGNED DEFAULT NULL,
   `password` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`id`, `id_siswa`, `id_guru`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 1, NULL, '$2y$10$GuIykvZ52coiP4oS4swZu.8ww9HOHObpHKYXPXGdWz.kb6ieesMbq', 'siswa', NULL, '2023-07-02 10:17:57', '2023-07-02 10:17:57'),
+(2, NULL, 1, '$2y$10$LqZ2TzH97v6smcpo2IfTvOkXJz5g.wGmkBIvqh6x0XSwX38AAyynu', 'admin', NULL, '2023-07-02 11:21:37', '2023-07-02 11:21:37'),
+(3, NULL, 1, '$2y$10$of9mIuKpy.J3waZseL7lDeHhZxPqw5Aoo/uX5xE058gNGI9QwoFUC', 'admin', NULL, '2023-07-03 09:51:26', '2023-07-03 09:51:26'),
+(4, 1, NULL, '$2y$10$wua3KmwmnTNwhbAiWXPRyepCvHodKJihy1Ct6rKPd4yKEhEZNM46.', 'siswa', NULL, '2023-07-03 09:52:00', '2023-07-03 09:52:00'),
+(5, NULL, 2, '$2y$10$LGgqNnq3ReKhbAkvJzOZ1.8egLjQgiBGSd9/rhSDOR4Wy2JyE01NO', 'admin', NULL, '2023-07-03 10:01:12', '2023-07-03 10:01:12');
 
 --
 -- Indexes for dumped tables
@@ -605,7 +543,7 @@ ALTER TABLE `muloks`
 -- Indeks untuk tabel `password_resets`
 --
 ALTER TABLE `password_resets`
-  ADD PRIMARY KEY (`email`);
+  ADD KEY `password_resets_email_index` (`email`);
 
 --
 -- Indeks untuk tabel `personal_access_tokens`
@@ -705,8 +643,8 @@ ALTER TABLE `sikaps`
 --
 ALTER TABLE `siswas`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `siswas_nis_unique` (`NIS`),
-  ADD UNIQUE KEY `siswas_nisn_unique` (`NISN`);
+  ADD UNIQUE KEY `siswas_nis_unique` (`nis`),
+  ADD UNIQUE KEY `siswas_nisn_unique` (`nisn`);
 
 --
 -- Indeks untuk tabel `sub_mapels`
@@ -733,7 +671,8 @@ ALTER TABLE `tahun_aktifs`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD KEY `users_id_guru_foreign` (`id_guru`),
+  ADD KEY `users_id_siswa_foreign` (`id_siswa`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -743,7 +682,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `ekstrakulikulers`
 --
 ALTER TABLE `ekstrakulikulers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
@@ -755,31 +694,31 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `gurus`
 --
 ALTER TABLE `gurus`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `mapels`
 --
 ALTER TABLE `mapels`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `muloks`
 --
 ALTER TABLE `muloks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
@@ -791,7 +730,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT untuk tabel `sekolahs`
 --
 ALTER TABLE `sekolahs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `set_ekstrakulikulers`
@@ -821,7 +760,7 @@ ALTER TABLE `set_muloks`
 -- AUTO_INCREMENT untuk tabel `set_nilai_mapels`
 --
 ALTER TABLE `set_nilai_mapels`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `set_nilai_muloks`
@@ -845,37 +784,37 @@ ALTER TABLE `set_wali_kelas`
 -- AUTO_INCREMENT untuk tabel `sikaps`
 --
 ALTER TABLE `sikaps`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswas`
 --
 ALTER TABLE `siswas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `sub_mapels`
 --
 ALTER TABLE `sub_mapels`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `sub_muloks`
 --
 ALTER TABLE `sub_muloks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `tahun_aktifs`
 --
 ALTER TABLE `tahun_aktifs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -957,6 +896,13 @@ ALTER TABLE `sub_mapels`
 --
 ALTER TABLE `sub_muloks`
   ADD CONSTRAINT `sub_muloks_id_mulok_foreign` FOREIGN KEY (`id_mulok`) REFERENCES `muloks` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_id_guru_foreign` FOREIGN KEY (`id_guru`) REFERENCES `gurus` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `users_id_siswa_foreign` FOREIGN KEY (`id_siswa`) REFERENCES `siswas` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
 
-@section('title', 'Data Sub Mata Pelajaran')
+@section('title', 'Data Akun')
 
 @section('content')
     
@@ -51,16 +51,18 @@
 
 
                     <tbody>
-                      {{-- @foreach ($subMapel as $sm)
+                      @foreach ($siswa as $s)
                           
                       <tr >
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $sm->mapel->nama_mapel }}</td>
-                        <td>{{ $sm->nama_submapel }}</td>
+                        <td>{{ $s->nisn }}</td>
+                        <td>{{ $s->nama }}</td>
+                        <td>********</td>
+                        <td>{{ $s->role }}</td>
                         
                         <td style="text-align: left">
-                          <a href="/admin/sub_mata_pelajaran/edit/{{ $sm->id }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                          <form action="/admin/sub_mata_pelajaran/delete/{{$sm->id}}" method="POST" class="d-inline">
+                          {{-- <a href="/admin/sub_mata_pelajaran/edit/{{ $sm->id }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a> --}}
+                          <form action="/admin/akun/delete/{{$s->id}}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                           <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </button>
@@ -68,7 +70,7 @@
                         </td>
                       </tr>
                       
-                      @endforeach --}}
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -88,14 +90,14 @@
                   Guru</a>
               <div class="x_panel">
                 <div class="x_title">
-                  @if (session('status'))
+                  {{-- @if (session('status'))
                   <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('status') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  @endif
+                  @endif --}}
                   <h2>Tabel Data <small>Akun Guru</small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -123,16 +125,18 @@
 
 
                     <tbody>
-                      {{-- @foreach ($subMapel as $sm)
+                      @foreach ($admin as $s)
                           
                       <tr >
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $sm->mapel->nama_mapel }}</td>
-                        <td>{{ $sm->nama_submapel }}</td>
+                        <td>{{ $s->NIP }}</td>
+                        <td>{{ $s->nama_lengkap }}</td>
+                        <td>********</td>
+                        <td>{{ $s->role }}</td>
                         
                         <td style="text-align: left">
-                          <a href="/admin/sub_mata_pelajaran/edit/{{ $sm->id }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                          <form action="/admin/sub_mata_pelajaran/delete/{{$sm->id}}" method="POST" class="d-inline">
+                          {{-- <a href="/admin/sub_mata_pelajaran/edit/{{ $sm->id }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a> --}}
+                          <form action="/admin/akun/delete/{{$s->id}}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                           <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </button>
@@ -140,7 +144,7 @@
                         </td>
                       </tr>
                       
-                      @endforeach --}}
+                      @endforeach
                     </tbody>
                   </table>
                 </div>

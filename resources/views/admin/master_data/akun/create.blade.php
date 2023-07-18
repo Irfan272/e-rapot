@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
 
-@section('title', 'Input Data Kelas')
+@section('title', 'Input Akun Siswa')
 
 @section('content')
      <!-- page content -->
@@ -29,7 +29,7 @@
                                         <select name="id_siswa" id="id_siswa" class="form-control selectpicker" data-live-search="true"  required='required'>
                                             <option readonly value="">Pilih Siswa (Nama, NISN)</option>
                                             @foreach ($siswa as $s)
-                                            <option value="{{ $s->id }}">{{ $s->NAMA }}, {{ $s->NISN }}</option>
+                                            <option value="{{ $s->id }}">{{ $s->NAMA }}, {{ $s->nisn }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -60,7 +60,7 @@
                                     <div class="form-group">
                                         <div class="col-md-6 offset-md-3">
                                             <button type='submit' class="btn btn-primary">Submit</button>
-                                            <a href="/admin/kelas" class="btn btn-danger">Batal</a>
+                                            <a href="/admin/akun" class="btn btn-danger">Batal</a>
                                         </div>
                                     </div>
                                 </div>

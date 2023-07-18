@@ -293,3 +293,8 @@ Route::post('/logout/siswa', [App\Http\Controllers\LoginSiswaController::class, 
 Route::get('/loginGuru',  [App\Http\Controllers\LoginGuruController::class, 'index']);
 Route::post('/login/guru',  [App\Http\Controllers\LoginGuruController::class, 'loginGuru']);
 Route::post('/logout/guru', [App\Http\Controllers\LoginGuruController::class, 'logoutGuru']);
+
+// Rapot
+Route::get('/admin/rapot', [App\Http\Controllers\RapotController::class, 'indexRapot']);
+Route::get('/admin/rapot/{id}', [App\Http\Controllers\RapotController::class, 'dataRapot']);
+Route::get('/cetakpdf', [App\Http\Controllers\RapotController::class, 'cetakpdf']);

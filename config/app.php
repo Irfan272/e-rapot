@@ -181,10 +181,12 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Barryvdh\DomPDF\ServiceProvider::class,
+        // ZanySoft\LaravelPDF\PdfServiceProvider::class,
+        
         /*
-         * Package Service Providers...
-         */
+        * Package Service Providers...
+        */
 
         /*
          * Application Service Providers...
@@ -208,8 +210,15 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
+    // 'aliases' => Facade::defaultAliases()->merge([
+    //     // 'ExampleClass' => App\Example\ExampleClass::class,
+    //     'PDF' => Barryvdh\DomPDF\PDF::class,
+    // ])->toArray(),
+    'aliases' => [
         // 'ExampleClass' => App\Example\ExampleClass::class,
-    ])->toArray(),
+        
+        // 'PDF' => Barryvdh\DomPDF\Facade::class,
+        // 'PDF' => ZanySoft\LaravelPDF\Facades\PDF::class,
+    ],
 
 ];

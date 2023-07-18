@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
 
-@section('title', 'Input Data Kelas')
+@section('title', 'Input Akun Guru')
 
 @section('content')
      <!-- page content -->
@@ -60,7 +60,7 @@
                                     <div class="form-group">
                                         <div class="col-md-6 offset-md-3">
                                             <button type='submit' class="btn btn-primary">Submit</button>
-                                            <a href="/admin/kelas" class="btn btn-danger">Batal</a>
+                                            <a href="/admin/akun" class="btn btn-danger">Batal</a>
                                         </div>
                                     </div>
                                 </div>
